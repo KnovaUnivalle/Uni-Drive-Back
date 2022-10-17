@@ -1,18 +1,10 @@
-import express, { json } from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-const port = 3000;
+import './config/env.js';
+import httpServer from './config/http.js';
 
-const app = express();
+const port = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(morgan('dev'));
-app.use(json());
+const server = () => {
+	httpServer.listen(port, () => console.log(`I am an app on port ${port}`));
+};
 
-app.listen(port, () => {
-	console.log(`I am an app on port ${port}`);
-});
-
-app.get('/', (req, res) => {
-	res.send('Hello World!');
-});
+server();
