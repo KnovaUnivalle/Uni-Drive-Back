@@ -7,8 +7,9 @@ const port = process.env.PORT || 3000;
 const server = async () => {
 	httpServer.listen(port, () => console.log(`I am an app on port ${port}`));
 	try {
-		await sequelize.authenticate();
-		console.log('Connection has been established successfully.');
+		await sequelize.sync({ force: true }).then(() => {
+			console.log('Connection has been established successfully.');
+		});
 	} catch (error) {
 		console.error('Unable to connect to the database:', error);
 	}
