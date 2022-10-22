@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import Admin from '../schemas/admin.schema.js';
+import adminRouter from '../routes/admin.routes.js';
 
 const app = express();
 
@@ -25,5 +26,7 @@ app.get('/testAdmin', (req, res) => {
 			.then(value => res.json(value));
 	});
 });
+
+app.use('/admin', adminRouter);
 
 export default app;
