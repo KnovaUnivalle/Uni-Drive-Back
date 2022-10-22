@@ -28,6 +28,7 @@ const Admin = sequelize.define(
 		tableName: 'admins',
 		timestamps: false, // no updateat, no createate
 		hooks: {
+			//to encrypt password
 			beforeCreate: async admin => {
 				const salt = await bcrypt.genSaltSync(10, 'a');
 				admin.password = bcrypt.hashSync(admin.password, salt);
@@ -44,7 +45,12 @@ const Admin = sequelize.define(
 		},
 	}
 );
-
+/**
+ * Validate the password
+ * @param {string} password incoming password
+ * @param {string} hash admin.password
+ * @returns the result of validation
+ */
 Admin.prototype.validPassword = async (password, hash) => {
 	return await bcrypt.compareSync(password, hash);
 };

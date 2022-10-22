@@ -27,6 +27,7 @@ addErrors(ajv);
 
 const validateSchema = ajv.compile(LoginDTOSchema);
 
+//validate body
 const loginDTO = (req, res, next) => {
 	const isDTOValid = validateSchema(req.body);
 

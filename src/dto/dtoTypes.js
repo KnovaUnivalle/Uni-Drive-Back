@@ -15,7 +15,7 @@ export const emailDTOSchema = Type.String({
 });
 
 export const passwordDTOSchema = Type.String({
-	format: 'password', // format = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/)
+	format: 'password',
 	minLength: 10,
 	maxLength: 25,
 	errorMessage: {
