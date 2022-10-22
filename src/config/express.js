@@ -18,11 +18,11 @@ app.get('/', (req, res) => {
 
 app.get('/testAdmin', (req, res) => {
 	Admin.create({
-		email: 'victor.sapuyes@correounivalle.edu.co',
-		password: 'unaclavesecreta',
+		email: 'test@correounivalle.edu.co',
+		password: 'Unaclavesecreta1',
 	}).then(admin => {
 		admin
-			.validPassword('unaclavesecreta', admin.password)
+			.validPassword('Unaclavesecreta1', admin.password)
 			.then(value => res.json(value));
 	});
 });

@@ -2,7 +2,7 @@ import { Type } from '@sinclair/typebox';
 import Ajv from 'ajv';
 import addErrors from 'ajv-errors';
 import addFormats from 'ajv-formats';
-import { emailDTOSchema, passwordDTOSchema } from './dtoTypes';
+import { emailDTOSchema, passwordDTOSchema } from './dtoTypes.js';
 
 const LoginDTOSchema = Type.Object(
 	{

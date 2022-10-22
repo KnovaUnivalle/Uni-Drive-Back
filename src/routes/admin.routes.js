@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import loginDTO from '../dto/login.dto';
+import adminLoginController from '../controllers/admin/login.controller.js';
+import loginDTO from '../dto/login.dto.js';
 
 const adminRouter = Router();
 
-adminRouter.post('/login', loginDTO); //adminLoginController
+adminRouter.post('/login', loginDTO, adminLoginController);
 
 export default adminRouter;
