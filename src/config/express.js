@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import cors from 'cors';
 import Admin from '../schemas/admin.schema.js';
 import adminRouter from '../routes/admin.routes.js';
+import bidderRouter from '../routes/bidder.routes.js';
+import riderRouter from '../routes/rider.routes.js';
 
 const app = express();
 
@@ -28,5 +30,7 @@ app.get('/testAdmin', (req, res) => {
 });
 
 app.use('/admin', adminRouter);
+app.use('/bidder', bidderRouter);
+app.use('/rider', riderRouter);
 
 export default app;
