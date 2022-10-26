@@ -2,8 +2,8 @@ import DataTypes from 'sequelize';
 import sequelize from '../config/db.js';
 import bcrypt from 'bcrypt';
 
-const Admin = sequelize.define(
-	'Admin',
+const Bidder = sequelize.define(
+	'Bidder',
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -25,17 +25,17 @@ const Admin = sequelize.define(
 	},
 	{
 		freezeTableName: true, // no change name
-		tableName: 'admins',
+		tableName: 'bidders',
 		timestamps: false, // no updateat, no createate
 		hooks: {
 			//to encrypt password
-			beforeCreate: async admin => {
+			beforeCreate: async bidder => {
 				const salt = await bcrypt.genSaltSync(10, 'a');
-				admin.password = bcrypt.hashSync(admin.password, salt);
+				bidder.password = bcrypt.hashSync(bidder.password, salt);
 			},
-			beforeUpdate: async admin => {
+			beforeUpdate: async bidder => {
 				const salt = await bcrypt.genSaltSync(10, 'a');
-				admin.password = bcrypt.hashSync(admin.password, salt);
+				bidder.password = bcrypt.hashSync(bidder.password, salt);
 			},
 		},
 		instanceMethods: {
@@ -48,11 +48,11 @@ const Admin = sequelize.define(
 /**
  * Validate the password
  * @param {string} password incoming password
- * @param {string} hash admin.password
+ * @param {string} hash bidder.password
  * @returns the result of validation
  */
-Admin.prototype.validPassword = async (password, hash) => {
+Bidder.prototype.validPassword = async (password, hash) => {
 	return await bcrypt.compareSync(password, hash);
 };
 
-export default Admin;
+export default Bidder;

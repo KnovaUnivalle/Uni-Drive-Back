@@ -2,6 +2,9 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import Admin from '../schemas/admin.schema.js';
+import adminRouter from '../routes/admin.routes.js';
+import bidderRouter from '../routes/bidder.routes.js';
+import riderRouter from '../routes/rider.routes.js';
 
 const app = express();
 
@@ -17,13 +20,17 @@ app.get('/', (req, res) => {
 
 app.get('/testAdmin', (req, res) => {
 	Admin.create({
-		email: 'victor.sapuyes@correounivalle.edu.co',
-		password: 'unaclavesecreta',
+		email: 'test@correounivalle.edu.co',
+		password: 'Unaclavesecreta1',
 	}).then(admin => {
 		admin
-			.validPassword('unaclavesecreta', admin.password)
+			.validPassword('Unaclavesecreta1', admin.password)
 			.then(value => res.json(value));
 	});
 });
+
+app.use('/admin', adminRouter);
+app.use('/bidder', bidderRouter);
+app.use('/rider', riderRouter);
 
 export default app;
