@@ -1,6 +1,7 @@
 import DataTypes from 'sequelize';
 import sequelize from '../config/db.js';
 import bcrypt from 'bcrypt';
+import Vehicle from './vehicle.schema.js';
 
 const Bidder = sequelize.define(
 	'Bidder',
@@ -22,11 +23,25 @@ const Bidder = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		birthDate: {
+			type: DataTypes.DATEONLY,
+			allowNull: false,
+		},
+		firsName: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		secondName: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		numberPhone: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 	},
 	{
-		freezeTableName: true, // no change name
-		tableName: 'bidders',
-		timestamps: false, // no updateat, no createate
+		timestamps: false, // no update at, no create at
 		hooks: {
 			//to encrypt password
 			beforeCreate: async bidder => {
@@ -54,5 +69,9 @@ const Bidder = sequelize.define(
 Bidder.prototype.validPassword = async (password, hash) => {
 	return await bcrypt.compareSync(password, hash);
 };
+
+//associations
+Bidder.hasOne(Vehicle, { foreignKey: 'bidderId' });
+Vehicle.belongsTo(Bidder);
 
 export default Bidder;
