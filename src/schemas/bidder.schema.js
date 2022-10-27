@@ -71,7 +71,7 @@ Bidder.prototype.validPassword = async (password, hash) => {
 };
 
 //associations
-Bidder.hasOne(Vehicle, { foreignKey: 'bidderId' });
+Bidder.hasOne(Vehicle);
 Vehicle.belongsTo(Bidder);
 
 export default Bidder;

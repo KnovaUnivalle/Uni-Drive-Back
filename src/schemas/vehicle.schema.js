@@ -27,16 +27,16 @@ const Vehicle = sequelize.define(
 	}
 );
 //associations
-Vehicle.hasOne(BrandVehicle, { foreignKey: 'vehicleId' });
+Vehicle.hasOne(BrandVehicle);
 BrandVehicle.belongsTo(Vehicle);
 
-Vehicle.hasOne(TypeVehicle, { foreignKey: 'vehicleId' });
+Vehicle.hasOne(TypeVehicle);
 TypeVehicle.belongsTo(Vehicle);
 
-Vehicle.hasOne(YearVehicle, { foreignKey: 'vehicleId' });
+Vehicle.hasOne(YearVehicle);
 YearVehicle.belongsTo(Vehicle);
 
-Vehicle.hasOne(ColorVehicle, { foreignKey: 'vehicleId' });
+Vehicle.hasOne(ColorVehicle);
 ColorVehicle.belongsTo(Vehicle);
 
 export default Vehicle;
