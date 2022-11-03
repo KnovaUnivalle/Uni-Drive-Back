@@ -31,7 +31,7 @@ const Bidder = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		secondName: {
+		lastName: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},

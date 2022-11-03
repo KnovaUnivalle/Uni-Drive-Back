@@ -30,7 +30,7 @@ const Rider = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		secondName: {
+		lastName: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},

@@ -26,3 +26,30 @@ export const passwordDTOSchema = Type.String({
 		maxLength: 'password debe tener como máximo 25 caracteres de longitud',
 	},
 });
+
+export const firstNameDTOSchema = Type.String({
+	errorMessage: {
+		type: 'El tipo de los nombres debe ser un string',
+	},
+});
+
+export const lastNameDTOSchema = Type.String({
+	errorMessage: {
+		type: 'El tipo de los apellidos debe ser un string',
+	},
+});
+
+export const numberPhoneDTOSchema = Type.String({
+	length: 10,
+	errorMessage: {
+		type: 'El tipo del teléfono debe de ser un string',
+		length: 'El teléfono debe tener un tamañao de 10 caracteres de longitud',
+	},
+});
+
+export const dateDTOSchema = Type.String({
+	format: 'date',
+	errorMessage: {
+		type: 'El tipo de la fecha de nacimiento debe de ser un string y en formato YYYY/MM/DD',
+	},
+});
