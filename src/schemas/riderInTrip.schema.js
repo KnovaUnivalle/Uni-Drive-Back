@@ -26,9 +26,10 @@ const RiderInTrip = sequelize.define(
 );
 
 //associations
-RiderInTrip.hasOne(Trip);
-Trip.belongsTo(RiderInTrip);
-RiderInTrip.hasOne(Rider);
-Rider.belongsTo(RiderInTrip);
+Trip.hasOne(RiderInTrip);
+RiderInTrip.belongsTo(Trip);
+
+Rider.hasOne(RiderInTrip);
+RiderInTrip.belongsTo(Rider);
 
 export default RiderInTrip;

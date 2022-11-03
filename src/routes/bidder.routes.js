@@ -5,5 +5,6 @@ import loginDTO from '../dto/login.dto.js';
 const bidderRouter = Router();
 
 bidderRouter.post('/login', loginDTO, bidderLoginController);
+bidderRouter.get('/create');
 
 export default bidderRouter;

@@ -27,16 +27,16 @@ const Vehicle = sequelize.define(
 	}
 );
 //associations
-Vehicle.hasOne(BrandVehicle);
-BrandVehicle.belongsTo(Vehicle);
+BrandVehicle.hasOne(Vehicle);
+Vehicle.belongsTo(BrandVehicle);
 
-Vehicle.hasOne(TypeVehicle);
-TypeVehicle.belongsTo(Vehicle);
+TypeVehicle.hasOne(Vehicle);
+Vehicle.belongsTo(TypeVehicle);
 
-Vehicle.hasOne(YearVehicle);
-YearVehicle.belongsTo(Vehicle);
+YearVehicle.hasOne(Vehicle);
+Vehicle.belongsTo(YearVehicle);
 
-Vehicle.hasOne(ColorVehicle);
-ColorVehicle.belongsTo(Vehicle);
+ColorVehicle.hasOne(Vehicle);
+Vehicle.belongsTo(ColorVehicle);
 
 export default Vehicle;
