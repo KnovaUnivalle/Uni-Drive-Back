@@ -7,6 +7,6 @@ import riderCreateDTO from '../dto/rider/create.dto.js';
 const riderRouter = Router();
 
 riderRouter.post('/login', loginDTO, riderLoginController);
-riderRouter.post('/create', riderJWTDTO, riderCreateDTO);
+riderRouter.post('/create', riderCreateDTO);
 
 export default riderRouter;
