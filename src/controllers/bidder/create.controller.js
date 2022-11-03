@@ -12,9 +12,10 @@ const bidderCreateController = async (req, res) => {
 	const bidder = await Bidder.create({
 		firstName: firstName,
 		lastName: lastName,
+		email: email,
 		password: password,
 		birthDate: birthDate,
-		number: number,
+		numberPhone: number,
 	});
 
 	return res.status(201).send('Conductor registrado con éxito');

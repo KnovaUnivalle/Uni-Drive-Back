@@ -26,7 +26,7 @@ const Rider = sequelize.define(
 			type: DataTypes.DATEONLY,
 			allowNull: false,
 		},
-		firsName: {
+		firstName: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},

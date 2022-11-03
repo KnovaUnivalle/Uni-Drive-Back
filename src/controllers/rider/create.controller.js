@@ -12,9 +12,10 @@ const riderCreateController = async (req, res) => {
 	const bidder = await Rider.create({
 		firstName: firstName,
 		lastName: lastName,
+		email: email,
 		password: password,
 		birthDate: birthDate,
-		number: number,
+		numberPhone: number,
 	});
 
 	return res.status(201).send('Usuario registrado con éxito');

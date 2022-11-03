@@ -40,10 +40,12 @@ export const lastNameDTOSchema = Type.String({
 });
 
 export const numberPhoneDTOSchema = Type.String({
-	length: 10,
+	minLength: 10,
+	maxLength: 10,
 	errorMessage: {
 		type: 'El tipo del teléfono debe de ser un string',
-		length: 'El teléfono debe tener un tamañao de 10 caracteres de longitud',
+		minLength: 'El teléfono debe tener un tamaño de 10 caracteres de longitud',
+		maxLength: 'El teléfono debe tener un tamaño de 10 caracteres de longitud',
 	},
 });
 
