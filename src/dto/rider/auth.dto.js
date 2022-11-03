@@ -1,6 +1,6 @@
 import { jwtVerify } from 'jose';
 
-const riderJWTDTO = async (req, res, next) => {
+const riderTokenDTO = async (req, res, next) => {
 	const { authorization } = req.headers;
 
 	if (!authorization)
@@ -25,4 +25,4 @@ const riderJWTDTO = async (req, res, next) => {
 	}
 };
 
-export default riderJWTDTO;
+export default riderTokenDTO;

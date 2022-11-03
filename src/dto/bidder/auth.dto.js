@@ -1,6 +1,6 @@
 import { jwtVerify } from 'jose';
 
-const bidderJWTDTO = async (req, res, next) => {
+const bidderTokenDTO = async (req, res, next) => {
 	const { authorization } = req.headers;
 
 	if (!authorization)
@@ -25,4 +25,4 @@ const bidderJWTDTO = async (req, res, next) => {
 	}
 };
 
-export default bidderJWTDTO;
+export default bidderTokenDTO;
