@@ -22,11 +22,25 @@ const Rider = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		birthDate: {
+			type: DataTypes.DATEONLY,
+			allowNull: false,
+		},
+		firstName: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		lastName: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		numberPhone: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 	},
 	{
-		freezeTableName: true, // no change name
-		tableName: 'riders',
-		timestamps: false, // no updateat, no createate
+		timestamps: false, // no update at, no create at
 		hooks: {
 			//to encrypt password
 			beforeCreate: async rider => {

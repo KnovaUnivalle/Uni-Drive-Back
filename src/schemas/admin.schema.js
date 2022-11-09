@@ -24,9 +24,7 @@ const Admin = sequelize.define(
 		},
 	},
 	{
-		freezeTableName: true, // no change name
-		tableName: 'admins',
-		timestamps: false, // no updateat, no createate
+		timestamps: false, // no update at, no create at
 		hooks: {
 			//to encrypt password
 			beforeCreate: async admin => {
