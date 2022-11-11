@@ -55,3 +55,9 @@ export const dateDTOSchema = Type.String({
 		type: 'El tipo de la fecha de nacimiento debe de ser un string y en formato YYYY/MM/DD',
 	},
 });
+
+export const documentDTOSchema = Type.String({
+	errorMessage: {
+		type: 'El tipo de los nombres debe ser un string',
+	},
+});

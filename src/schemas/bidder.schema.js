@@ -12,7 +12,7 @@ const Bidder = sequelize.define(
 			primaryKey: true,
 		},
 		email: {
-			type: DataTypes.STRING(50),
+			type: DataTypes.STRING,
 			allowNull: false,
 			unique: true,
 			validate: {
@@ -38,6 +38,11 @@ const Bidder = sequelize.define(
 		numberPhone: {
 			type: DataTypes.STRING,
 			allowNull: false,
+		},
+		document: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			unique: true,
 		},
 	},
 	{

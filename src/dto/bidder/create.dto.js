@@ -9,6 +9,7 @@ import {
 	lastNameDTOSchema,
 	dateDTOSchema,
 	numberPhoneDTOSchema,
+	documentDTOSchema,
 } from '../dtoTypes.js';
 
 const BidderCreateDTOSchema = Type.Object(
@@ -19,6 +20,7 @@ const BidderCreateDTOSchema = Type.Object(
 		lastName: lastNameDTOSchema,
 		birthDate: dateDTOSchema,
 		number: numberPhoneDTOSchema,
+		document: documentDTOSchema,
 	},
 	{
 		additionalProperties: false,
