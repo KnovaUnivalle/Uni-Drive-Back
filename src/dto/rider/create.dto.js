@@ -9,6 +9,7 @@ import {
 	lastNameDTOSchema,
 	dateDTOSchema,
 	numberPhoneDTOSchema,
+	documentDTOSchema,
 } from '../dtoTypes.js';
 
 const RiderCreateDTOSchema = Type.Object(
@@ -19,6 +20,7 @@ const RiderCreateDTOSchema = Type.Object(
 		lastName: lastNameDTOSchema,
 		birthDate: dateDTOSchema,
 		number: numberPhoneDTOSchema,
+		document: documentDTOSchema,
 	},
 	{
 		additionalProperties: false,
