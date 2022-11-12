@@ -10,6 +10,8 @@ import {
 	dateDTOSchema,
 	numberPhoneDTOSchema,
 	documentDTOSchema,
+	idDTOSchema,
+	plateDTOSchema,
 } from '../dtoTypes.js';
 
 const BidderCreateDTOSchema = Type.Object(
@@ -21,6 +23,12 @@ const BidderCreateDTOSchema = Type.Object(
 		birthDate: dateDTOSchema,
 		number: numberPhoneDTOSchema,
 		document: documentDTOSchema,
+		typeVehicle: idDTOSchema,
+		brandVehicle: idDTOSchema,
+		colorVehicle: idDTOSchema,
+		yearVehicle: idDTOSchema,
+		plate: plateDTOSchema,
+		available: Type.Integer,
 	},
 	{
 		additionalProperties: false,
@@ -34,6 +42,7 @@ const ajv = new Ajv({ allErrors: true })
 	.addKeyword('modifier');
 
 ajv.addFormat('password', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/);
+ajv.addFormat('plate', /^([a-z]|[A-Z]){3}([0-9]){3}/);
 addFormats(ajv, ['email', 'date']);
 addErrors(ajv);
 
