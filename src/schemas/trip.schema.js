@@ -1,5 +1,6 @@
 import DataTypes from 'sequelize';
 import sequelize from '../config/db.js';
+import Vehicle from './vehicle.schema.js';
 
 const Trip = sequelize.define(
 	'Trip',
@@ -38,5 +39,8 @@ const Trip = sequelize.define(
 		timestamps: false, // no update at, no create at
 	}
 );
+
+Vehicle.hasOne(Trip);
+Trip.belongsTo(Vehicle);
 
 export default Trip;

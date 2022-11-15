@@ -43,6 +43,11 @@ const Rider = sequelize.define(
 			allowNull: false,
 			unique: true,
 		},
+		active: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: true,
+		},
 	},
 	{
 		timestamps: false, // no update at, no create at

@@ -22,6 +22,11 @@ const Vehicle = sequelize.define(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
+		active: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: true,
+		},
 	},
 	{
 		timestamps: false, // no update at, no create at
