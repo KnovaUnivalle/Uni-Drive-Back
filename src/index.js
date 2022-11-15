@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const server = async () => {
 	httpServer.listen(port, () => console.log(`I am an app on port ${port}`));
 	try {
-		await sequelize.sync({ force: true }).then(() => {
+		await sequelize.sync({ force: false }).then(() => {
 			console.log('Connection has been established successfully.');
 		});
 	} catch (error) {

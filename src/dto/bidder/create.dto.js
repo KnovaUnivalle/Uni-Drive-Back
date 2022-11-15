@@ -28,7 +28,7 @@ const BidderCreateDTOSchema = Type.Object(
 		colorVehicle: idDTOSchema,
 		yearVehicle: idDTOSchema,
 		plate: plateDTOSchema,
-		available: Type.Integer,
+		available: Type.Integer(),
 	},
 	{
 		additionalProperties: false,
