@@ -5,6 +5,7 @@ import Admin from '../schemas/admin.schema.js';
 import adminRouter from '../routes/admin.routes.js';
 import bidderRouter from '../routes/bidder.routes.js';
 import riderRouter from '../routes/rider.routes.js';
+import vehicleRouter from '../routes/vehicle.routes.js';
 
 const app = express();
 
@@ -32,5 +33,6 @@ app.get('/testAdmin', (req, res) => {
 app.use('/admin', adminRouter);
 app.use('/bidder', bidderRouter);
 app.use('/rider', riderRouter);
+app.use('/vehicle', vehicleRouter);
 
 export default app;
