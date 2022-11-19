@@ -4,7 +4,7 @@ import {
 	getColorController,
 	getTypeController,
 	getYearController,
-} from '../controllers/vehicle/getsAttributes.controller.js';
+} from '../controllers/vehicle/attributes.controller.js';
 
 const vehicleRouter = Router();
 
