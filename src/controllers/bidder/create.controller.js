@@ -18,18 +18,20 @@ const bidderCreateController = async (req, res) => {
 		yearVehicle,
 	} = req.body;
 
+	//validate duplicate email
 	const bidderByEmail = await Bidder.findOne({ where: { email: email } });
 	if (bidderByEmail)
 		return res.status(409).send({
 			errors: ['Ya existe un conductor con ese email registrado'],
 		});
 
+	//validate duplicate palte
 	const vehicleByPlate = await Vehicle.findOne({ where: { plate: plate } });
 	if (vehicleByPlate)
 		return res.status(409).send({
 			errors: ['Ya existe un vehiculo registrado con esa placa'],
 		});
-
+	//validate duplicate cc
 	const bidderByDocument = await Bidder.findOne({
 		where: { document: document },
 	});
@@ -38,6 +40,7 @@ const bidderCreateController = async (req, res) => {
 			errors: ['Ya existe un conductor con ese documento registrado'],
 		});
 
+	//create bidder and vehicle, send status
 	const bidder = await Bidder.create({
 		firstName: firstName,
 		lastName: lastName,
