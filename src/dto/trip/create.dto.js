@@ -2,17 +2,25 @@ import { Type } from '@sinclair/typebox';
 import Ajv from 'ajv';
 import addErrors from 'ajv-errors';
 import addFormats from 'ajv-formats';
-import { dateTimeDTOSchema, dayDTOSchema, idDTOSchema } from '../dtoTypes';
+import {
+	dateTimeDTOSchema,
+	dayDTOSchema,
+	descriptionDTOSchema,
+	idDTOSchema,
+	meetPointDTOSchema,
+	rateDTOSchema,
+	toUniversityDTOSchema,
+} from '../dtoTypes';
 
 const TripCreateDTOSchema = Type.Object(
 	{
 		vehicle: idDTOSchema,
 		date: dateTimeDTOSchema,
 		day: dayDTOSchema,
-		rate: Type.String(),
-		description: Type.String(),
-		toUniversity: Type.Boolean(),
-		meetPoint: Type.String(),
+		rate: rateDTOSchema,
+		description: descriptionDTOSchema,
+		toUniversity: toUniversityDTOSchema,
+		meetPoint: meetPointDTOSchema,
 	},
 	{
 		additionalProperties: false,

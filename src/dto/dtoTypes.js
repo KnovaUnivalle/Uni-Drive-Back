@@ -44,8 +44,8 @@ export const numberPhoneDTOSchema = Type.String({
 	maxLength: 10,
 	errorMessage: {
 		type: 'El tipo del teléfono debe de ser una cadena de caracteres',
-		minLength: 'El teléfono debe tener un tamaño de 10 caracteres de longitud',
-		maxLength: 'El teléfono debe tener un tamaño de 10 caracteres de longitud',
+		minLength: 'La placa debe tener al menos 10 caracteres de longitud',
+		maxLength: 'La placa debe tener como máximo 10 caracteres de longitud',
 	},
 });
 
@@ -54,7 +54,7 @@ export const dateDTOSchema = Type.String({
 	errorMessage: {
 		type: 'El tipo de la fecha debe de ser una cadena de caracteres',
 		format:
-			'El formato de la fecha no es válido, debe ser en formato YYYY-MM-DD',
+			'El formato de la fecha no es válido, debe ser en formato YYYY-MM-DD (RFC3339)',
 	},
 });
 
@@ -63,7 +63,7 @@ export const dateTimeDTOSchema = Type.String({
 	errorMessage: {
 		type: 'El tipo de la fecha de nacimiento debe de ser una cadena de caracteres',
 		format:
-			'El formato de la contraseña no es válido, debe ser en formato YYYY-MM-DDThh:mmTZD',
+			'El formato de la contraseña no es válido, debe ser en formato YYYY-MM-DDThh:mmTZD (RFC3339)',
 	},
 });
 
@@ -99,5 +99,39 @@ export const dayDTOSchema = Type.Integer({
 		type: 'El tipo del día debe ser una cadena de caracteres',
 		minimum: 'El día debe ser al menos 1',
 		maximum: 'El día debe ser máximo 7',
+	},
+});
+
+export const descriptionDTOSchema = Type.String({
+	maxLength: 255,
+	errorMessage: {
+		type: 'El tipo de la descripción no es válido, debe ser una cadena de caracteres',
+		maxLength:
+			'La descripción debe tener como máximo 255 caracteres de longitud',
+	},
+});
+
+export const meetPointDTOSchema = Type.String({
+	maxLength: 255,
+	errorMessage: {
+		type: 'El tipo del punto de encuentro no es válido, debe ser una cadena de caracteres',
+		maxLength:
+			'El punto de encuentro debe tener máximo 255 caracteres de longitud',
+	},
+});
+
+export const rateDTOSchema = Type.String({
+	minLength: 4,
+	maxLength: 5,
+	errorMessage: {
+		type: 'El tipo de la tarifa debe de ser una cadena de caracteres',
+		minLength: 'La tarifa debe tener al menos 4 caracteres de longitud',
+		maxLength: 'La tarifa debe tener como máximo 5 caracteres de longitud',
+	},
+});
+
+export const toUniversityDTOSchema = Type.Boolean({
+	errorMessage: {
+		type: 'El tipo de a la universidad debe ser boleano',
 	},
 });

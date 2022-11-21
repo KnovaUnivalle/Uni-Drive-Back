@@ -29,6 +29,7 @@ const RiderCreateDTOSchema = Type.Object(
 		},
 	}
 );
+
 const ajv = new Ajv({ allErrors: true })
 	.addKeyword('kind')
 	.addKeyword('modifier');
