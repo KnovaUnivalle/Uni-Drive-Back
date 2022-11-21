@@ -52,15 +52,30 @@ export const numberPhoneDTOSchema = Type.String({
 export const dateDTOSchema = Type.String({
 	format: 'date',
 	errorMessage: {
+		type: 'El tipo de la fecha debe de ser una cadena de caracteres',
+		format:
+			'El formato de la fecha no es válido, debe ser en formato YYYY-MM-DD',
+	},
+});
+
+export const dateTimeDTOSchema = Type.String({
+	format: 'date-time',
+	errorMessage: {
 		type: 'El tipo de la fecha de nacimiento debe de ser una cadena de caracteres',
 		format:
-			'El formato de la contraseña no es válido, debe ser en formato YYYY/MM/DD',
+			'El formato de la contraseña no es válido, debe ser en formato YYYY-MM-DDThh:mmTZD',
 	},
 });
 
 export const documentDTOSchema = Type.String({
 	errorMessage: {
 		type: 'El tipo de los nombres debe ser una cadena de caracteres',
+	},
+});
+
+export const availableDTOSchema = Type.Integer({
+	errorMessage: {
+		type: 'El tipo de los cupos disponibles debe ser una cadena de caracteres',
 	},
 });
 
@@ -71,8 +86,18 @@ export const plateDTOSchema = Type.String({
 	errorMessage: {
 		type: 'El tipo de la placa no es válido, debe ser una cadena de caracteres',
 		format:
-			'El formato de la placa no es válido, debe contener 3 letras y luego 3 números',
+			'El formato de la placa no es válido, debe contener 3 letras luego 2 números y por ultimo una letra o número',
 		minLength: 'La placa debe tener al menos 6 caracteres de longitud',
 		maxLength: 'La placa debe tener como máximo 6 caracteres de longitud',
+	},
+});
+
+export const dayDTOSchema = Type.Integer({
+	minimum: 1,
+	maximum: 7,
+	errorMessage: {
+		type: 'El tipo del día debe ser una cadena de caracteres',
+		minimum: 'El día debe ser al menos 1',
+		maximum: 'El día debe ser máximo 7',
 	},
 });

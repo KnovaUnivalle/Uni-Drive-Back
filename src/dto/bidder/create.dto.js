@@ -12,6 +12,7 @@ import {
 	documentDTOSchema,
 	idDTOSchema,
 	plateDTOSchema,
+	availableDTOSchema,
 } from '../dtoTypes.js';
 
 const BidderCreateDTOSchema = Type.Object(
@@ -28,7 +29,7 @@ const BidderCreateDTOSchema = Type.Object(
 		colorVehicle: idDTOSchema,
 		yearVehicle: idDTOSchema,
 		plate: plateDTOSchema,
-		available: Type.Integer(),
+		available: availableDTOSchema,
 	},
 	{
 		additionalProperties: false,
@@ -37,6 +38,7 @@ const BidderCreateDTOSchema = Type.Object(
 		},
 	}
 );
+
 const ajv = new Ajv({ allErrors: true })
 	.addKeyword('kind')
 	.addKeyword('modifier');
