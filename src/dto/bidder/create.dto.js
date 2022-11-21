@@ -42,7 +42,7 @@ const ajv = new Ajv({ allErrors: true })
 	.addKeyword('modifier');
 
 ajv.addFormat('password', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/);
-ajv.addFormat('plate', /^([a-z]|[A-Z]){3}([0-9]){3}/);
+ajv.addFormat('plate', /^([a-z]|[A-Z]){3}([0-9]){2}([0-9]|([a-z]|[A-Z]))/);
 addFormats(ajv, ['email', 'date']);
 addErrors(ajv);
 
