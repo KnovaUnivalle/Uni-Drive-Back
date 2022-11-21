@@ -10,7 +10,7 @@ import {
 	meetPointDTOSchema,
 	rateDTOSchema,
 	toUniversityDTOSchema,
-} from '../dtoTypes';
+} from '../dtoTypes.js';
 
 const TripCreateDTOSchema = Type.Object(
 	{
