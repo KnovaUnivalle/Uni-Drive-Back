@@ -11,8 +11,8 @@ const RiderInTrip = sequelize.define(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		description: {
-			type: DataTypes.INTEGER,
+		status: {
+			type: DataTypes.SMALLINT,
 			allowNull: false,
 		},
 		point: {

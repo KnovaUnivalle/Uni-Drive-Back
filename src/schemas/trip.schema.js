@@ -15,7 +15,7 @@ const Trip = sequelize.define(
 			allowNull: false,
 		},
 		day: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.SMALLINT,
 			allowNull: false,
 		},
 		rate: {
