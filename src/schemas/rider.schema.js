@@ -1,6 +1,7 @@
 import DataTypes from 'sequelize';
 import sequelize from '../config/db.js';
 import bcrypt from 'bcrypt';
+import City from './city.schema.js';
 
 const Rider = sequelize.define(
 	'Rider',
@@ -78,5 +79,8 @@ const Rider = sequelize.define(
 Rider.prototype.validPassword = async (password, hash) => {
 	return await bcrypt.compareSync(password, hash);
 };
+
+City.hasOne(Rider);
+Rider.belongsTo(City);
 
 export default Rider;

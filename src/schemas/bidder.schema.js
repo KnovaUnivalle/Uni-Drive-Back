@@ -2,6 +2,7 @@ import DataTypes from 'sequelize';
 import sequelize from '../config/db.js';
 import bcrypt from 'bcrypt';
 import Vehicle from './vehicle.schema.js';
+import City from './city.schema.js';
 
 const Bidder = sequelize.define(
 	'Bidder',
@@ -83,5 +84,8 @@ Bidder.prototype.validPassword = async (password, hash) => {
 //associations
 Bidder.hasOne(Vehicle);
 Vehicle.belongsTo(Bidder);
+
+City.hasOne(Bidder);
+Bidder.belongsTo(City);
 
 export default Bidder;
