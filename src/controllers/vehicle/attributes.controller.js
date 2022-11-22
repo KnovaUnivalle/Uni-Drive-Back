@@ -7,6 +7,7 @@ import YearVehicle from '../../schemas/yearVehicle.schema.js';
 export const getColorController = async (req, res) => {
 	const data = await ColorVehicle.findAll({
 		where: { active: true },
+		attributes: ['id', 'name'],
 	});
 	res.json(data);
 };
@@ -15,6 +16,7 @@ export const getColorController = async (req, res) => {
 export const getYearController = async (req, res) => {
 	const data = await YearVehicle.findAll({
 		where: { active: true },
+		attributes: ['id', 'name'],
 	});
 	res.json(data);
 };
@@ -23,6 +25,7 @@ export const getYearController = async (req, res) => {
 export const getBrandController = async (req, res) => {
 	const data = await BrandVehicle.findAll({
 		where: { active: true },
+		attributes: ['id', 'name'],
 	});
 	res.json(data);
 };
@@ -31,6 +34,7 @@ export const getBrandController = async (req, res) => {
 export const getTypeController = async (req, res) => {
 	const data = await TypeVehicle.findAll({
 		where: { active: true },
+		attributes: ['id', 'name'],
 	});
 	res.json(data);
 };
