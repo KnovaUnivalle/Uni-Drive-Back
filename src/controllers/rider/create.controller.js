@@ -1,8 +1,16 @@
 import Rider from '../../schemas/rider.schema.js';
 
 const riderCreateController = async (req, res) => {
-	const { firstName, lastName, email, password, birthDate, number, document } =
-		req.body;
+	const {
+		firstName,
+		lastName,
+		email,
+		password,
+		birthDate,
+		number,
+		document,
+		city,
+	} = req.body;
 
 	//validate duplicate email
 	const riderByEmail = await Rider.findOne({ where: { email: email } });
@@ -29,6 +37,7 @@ const riderCreateController = async (req, res) => {
 		birthDate: birthDate,
 		numberPhone: number,
 		document: document,
+		CityID: city,
 	});
 
 	return res.status(201).send('Pasajero registrado con éxito');

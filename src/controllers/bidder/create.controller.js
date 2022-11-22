@@ -16,6 +16,7 @@ const bidderCreateController = async (req, res) => {
 		brandVehicle,
 		colorVehicle,
 		yearVehicle,
+		city,
 	} = req.body;
 
 	//validate duplicate email
@@ -49,6 +50,7 @@ const bidderCreateController = async (req, res) => {
 		birthDate: birthDate,
 		numberPhone: number,
 		document: document,
+		CityID: city,
 	});
 
 	const vehicle = await Vehicle.create({
