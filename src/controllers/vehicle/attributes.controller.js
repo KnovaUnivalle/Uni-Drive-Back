@@ -3,26 +3,34 @@ import ColorVehicle from '../../schemas/colorVehicle.schema.js';
 import TypeVehicle from '../../schemas/typeVehicle.schema.js';
 import YearVehicle from '../../schemas/yearVehicle.schema.js';
 
-//return colors from bd
+//return colors actives from bd
 export const getColorController = async (req, res) => {
-	const data = await ColorVehicle.findAll();
+	const data = await ColorVehicle.findAll({
+		where: { active: true },
+	});
 	res.json(data);
 };
 
-//return years from bd
+//return years actives from bd
 export const getYearController = async (req, res) => {
-	const data = await YearVehicle.findAll();
+	const data = await YearVehicle.findAll({
+		where: { active: true },
+	});
 	res.json(data);
 };
 
-//return brands from bd
+//return brands actives from bd
 export const getBrandController = async (req, res) => {
-	const data = await BrandVehicle.findAll();
+	const data = await BrandVehicle.findAll({
+		where: { active: true },
+	});
 	res.json(data);
 };
 
-//return types from bd
+//return types actives from bd
 export const getTypeController = async (req, res) => {
-	const data = await TypeVehicle.findAll();
+	const data = await TypeVehicle.findAll({
+		where: { active: true },
+	});
 	res.json(data);
 };
