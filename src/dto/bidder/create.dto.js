@@ -30,6 +30,7 @@ const BidderCreateDTOSchema = Type.Object(
 		yearVehicle: idDTOSchema,
 		plate: plateDTOSchema,
 		available: availableDTOSchema,
+		city: idDTOSchema,
 	},
 	{
 		additionalProperties: false,
