@@ -4,12 +4,14 @@ import Admin from '../../schemas/admin.schema.js';
 const adminLoginController = async (req, res) => {
 	const { email, password } = req.body;
 
+	//validate email
 	const adminByEmail = await Admin.findOne({ where: { email: email } });
 	if (!adminByEmail)
 		return res.status(400).send({
 			errors: ['Credenciales incorrectas'],
 		});
 
+	//validate password
 	const checkPassword = await adminByEmail.validPassword(
 		password,
 		adminByEmail.password
@@ -20,7 +22,11 @@ const adminLoginController = async (req, res) => {
 			errors: ['Credenciales incorrectas'],
 		});
 
-	const jwtConstructor = new SignJWT({ id: adminByEmail.id });
+	// create and send jwt
+	const jwtConstructor = new SignJWT({
+		id: adminByEmail.id,
+		email: adminByEmail.email,
+	});
 	const encoder = new TextEncoder();
 	const jwt = await jwtConstructor
 		.setProtectedHeader({

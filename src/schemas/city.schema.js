@@ -1,8 +1,8 @@
 import DataTypes from 'sequelize';
 import sequelize from '../config/db.js';
 
-const TypeVehicle = sequelize.define(
-	'TypeVehicle',
+const City = sequelize.define(
+	'City',
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -24,4 +24,4 @@ const TypeVehicle = sequelize.define(
 	}
 );
 
-export default TypeVehicle;
+export default City;

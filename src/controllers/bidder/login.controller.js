@@ -4,12 +4,14 @@ import Bidder from '../../schemas/bidder.schema.js';
 const bidderLoginController = async (req, res) => {
 	const { email, password } = req.body;
 
+	//validate email
 	const bidderByEmail = await Bidder.findOne({ where: { email: email } });
 	if (!bidderByEmail)
 		return res.status(400).send({
 			errors: ['Credenciales incorrectas'],
 		});
 
+	//validate password
 	const checkPassword = await bidderByEmail.validPassword(
 		password,
 		bidderByEmail.password
@@ -20,7 +22,11 @@ const bidderLoginController = async (req, res) => {
 			errors: ['Credenciales incorrectas'],
 		});
 
-	const jwtConstructor = new SignJWT({ id: bidderByEmail.id });
+	// create and send jwt
+	const jwtConstructor = new SignJWT({
+		id: bidderByEmail.id,
+		email: bidderByEmail.email,
+	});
 	const encoder = new TextEncoder();
 	const jwt = await jwtConstructor
 		.setProtectedHeader({

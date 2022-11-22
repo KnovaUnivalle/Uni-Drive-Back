@@ -9,6 +9,8 @@ import {
 	lastNameDTOSchema,
 	dateDTOSchema,
 	numberPhoneDTOSchema,
+	documentDTOSchema,
+	idDTOSchema,
 } from '../dtoTypes.js';
 
 const RiderCreateDTOSchema = Type.Object(
@@ -19,6 +21,8 @@ const RiderCreateDTOSchema = Type.Object(
 		lastName: lastNameDTOSchema,
 		birthDate: dateDTOSchema,
 		number: numberPhoneDTOSchema,
+		document: documentDTOSchema,
+		city: idDTOSchema,
 	},
 	{
 		additionalProperties: false,
@@ -27,6 +31,7 @@ const RiderCreateDTOSchema = Type.Object(
 		},
 	}
 );
+
 const ajv = new Ajv({ allErrors: true })
 	.addKeyword('kind')
 	.addKeyword('modifier');

@@ -2,6 +2,7 @@ import DataTypes from 'sequelize';
 import sequelize from '../config/db.js';
 import bcrypt from 'bcrypt';
 import Vehicle from './vehicle.schema.js';
+import City from './city.schema.js';
 
 const Bidder = sequelize.define(
 	'Bidder',
@@ -12,7 +13,7 @@ const Bidder = sequelize.define(
 			primaryKey: true,
 		},
 		email: {
-			type: DataTypes.STRING(50),
+			type: DataTypes.STRING,
 			allowNull: false,
 			unique: true,
 			validate: {
@@ -38,6 +39,16 @@ const Bidder = sequelize.define(
 		numberPhone: {
 			type: DataTypes.STRING,
 			allowNull: false,
+		},
+		document: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			unique: true,
+		},
+		active: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: true,
 		},
 	},
 	{
@@ -73,5 +84,8 @@ Bidder.prototype.validPassword = async (password, hash) => {
 //associations
 Bidder.hasOne(Vehicle);
 Vehicle.belongsTo(Bidder);
+
+City.hasOne(Bidder);
+Bidder.belongsTo(City);
 
 export default Bidder;

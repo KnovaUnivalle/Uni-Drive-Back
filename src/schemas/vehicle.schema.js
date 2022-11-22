@@ -16,10 +16,16 @@ const Vehicle = sequelize.define(
 		plate: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			unique: true,
 		},
 		available: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.SMALLINT,
 			allowNull: false,
+		},
+		active: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: true,
 		},
 	},
 	{
