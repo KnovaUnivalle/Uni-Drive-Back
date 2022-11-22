@@ -19,7 +19,7 @@ const Vehicle = sequelize.define(
 			unique: true,
 		},
 		available: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.SMALLINT,
 			allowNull: false,
 		},
 		active: {

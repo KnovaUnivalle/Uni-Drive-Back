@@ -19,7 +19,7 @@ const Trip = sequelize.define(
 			allowNull: false,
 		},
 		rate: {
-			type: DataTypes.STRING,
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		description: {
