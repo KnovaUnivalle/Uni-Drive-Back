@@ -61,9 +61,9 @@ export const dateDTOSchema = Type.String({
 export const dateTimeDTOSchema = Type.String({
 	format: 'date-time',
 	errorMessage: {
-		type: 'El tipo de la fecha de nacimiento debe de ser una cadena de caracteres',
+		type: 'El tipo de la fecha debe de ser una cadena de caracteres',
 		format:
-			'El formato de la contraseña no es válido, debe ser en formato YYYY-MM-DDThh:mmTZD (RFC3339)',
+			'El formato de la fecha no es válido, debe ser en formato YYYY-MM-DDThh:mmTZD (RFC3339)',
 	},
 });
 
@@ -74,8 +74,12 @@ export const documentDTOSchema = Type.String({
 });
 
 export const availableDTOSchema = Type.Integer({
+	minimum: 1,
+	maximum: 10,
 	errorMessage: {
-		type: 'El tipo de los cupos disponibles debe ser una cadena de caracteres',
+		type: 'El tipo del cupoo debe de ser un entero',
+		minimum: 'El cupo minimo debe ser al menos 1',
+		maximum: 'El cupo maximo debe ser 10',
 	},
 });
 
@@ -96,7 +100,7 @@ export const dayDTOSchema = Type.Integer({
 	minimum: 1,
 	maximum: 7,
 	errorMessage: {
-		type: 'El tipo del día debe ser una cadena de caracteres',
+		type: 'El tipo del día debe ser un entero',
 		minimum: 'El día debe ser al menos 1',
 		maximum: 'El día debe ser máximo 7',
 	},
@@ -120,13 +124,11 @@ export const meetPointDTOSchema = Type.String({
 	},
 });
 
-export const rateDTOSchema = Type.String({
-	minLength: 4,
-	maxLength: 5,
+export const rateDTOSchema = Type.Integer({
+	minimum: 0,
 	errorMessage: {
-		type: 'El tipo de la tarifa debe de ser una cadena de caracteres',
-		minLength: 'La tarifa debe tener al menos 4 caracteres de longitud',
-		maxLength: 'La tarifa debe tener como máximo 5 caracteres de longitud',
+		type: 'El tipo de la tarifa debe de ser un entero',
+		minimum: 'La tarifa debe tener un valor positivo',
 	},
 });
 
