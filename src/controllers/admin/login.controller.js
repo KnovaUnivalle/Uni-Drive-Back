@@ -23,7 +23,10 @@ const adminLoginController = async (req, res) => {
 		});
 
 	// create and send jwt
-	const jwtConstructor = new SignJWT({ id: adminByEmail.id });
+	const jwtConstructor = new SignJWT({
+		id: adminByEmail.id,
+		email: adminByEmail.email,
+	});
 	const encoder = new TextEncoder();
 	const jwt = await jwtConstructor
 		.setProtectedHeader({

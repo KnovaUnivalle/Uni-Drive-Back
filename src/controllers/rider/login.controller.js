@@ -23,7 +23,10 @@ const riderLoginController = async (req, res) => {
 		});
 
 	// create and send jwt
-	const jwtConstructor = new SignJWT({ id: riderByEmail.id });
+	const jwtConstructor = new SignJWT({
+		id: riderByEmail.id,
+		email: riderByEmail.email,
+	});
 	const encoder = new TextEncoder();
 	const jwt = await jwtConstructor
 		.setProtectedHeader({

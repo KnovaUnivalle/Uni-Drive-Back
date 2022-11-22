@@ -23,7 +23,10 @@ const bidderLoginController = async (req, res) => {
 		});
 
 	// create and send jwt
-	const jwtConstructor = new SignJWT({ id: bidderByEmail.id });
+	const jwtConstructor = new SignJWT({
+		id: bidderByEmail.id,
+		email: bidderByEmail.email,
+	});
 	const encoder = new TextEncoder();
 	const jwt = await jwtConstructor
 		.setProtectedHeader({
