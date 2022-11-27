@@ -3,7 +3,13 @@ import ColorVehicle from '../../schemas/colorVehicle.schema.js';
 import TypeVehicle from '../../schemas/typeVehicle.schema.js';
 import YearVehicle from '../../schemas/yearVehicle.schema.js';
 
-//return colors actives from bd
+// COLOR
+
+/**
+ * send colors actives from database
+ * @param {*} req
+ * @param {*} res
+ */
 export const getColorController = async (req, res) => {
 	const data = await ColorVehicle.findAll({
 		where: { active: true },
@@ -12,7 +18,20 @@ export const getColorController = async (req, res) => {
 	res.json(data);
 };
 
-//return years actives from bd
+/**
+ * create a color in database
+ * @param {*} req
+ * @param {*} res
+ */
+export const createColorController = async (req, res) => {};
+
+// YEAR
+
+/**
+ * send years actives from database
+ * @param {*} req
+ * @param {*} res
+ */
 export const getYearController = async (req, res) => {
 	const data = await YearVehicle.findAll({
 		where: { active: true },
@@ -21,7 +40,20 @@ export const getYearController = async (req, res) => {
 	res.json(data);
 };
 
-//return brands actives from bd
+/**
+ * create a year in database
+ * @param {*} req
+ * @param {*} res
+ */
+export const createYearController = async (req, res) => {};
+
+// BRAND
+
+/**
+ * send brands actives from database
+ * @param {*} req
+ * @param {*} res
+ */
 export const getBrandController = async (req, res) => {
 	const data = await BrandVehicle.findAll({
 		where: { active: true },
@@ -30,7 +62,20 @@ export const getBrandController = async (req, res) => {
 	res.json(data);
 };
 
-//return types actives from bd
+/**
+ * create a brand in database
+ * @param {*} req
+ * @param {*} res
+ */
+export const createBrandController = async (req, res) => {};
+
+// TYPE
+
+/**
+ * send types actives from database
+ * @param {*} req
+ * @param {*} res
+ */
 export const getTypeController = async (req, res) => {
 	const data = await TypeVehicle.findAll({
 		where: { active: true },
@@ -38,3 +83,10 @@ export const getTypeController = async (req, res) => {
 	});
 	res.json(data);
 };
+
+/**
+ * create a type in database
+ * @param {*} req
+ * @param {*} res
+ */
+export const createTypeController = async (req, res) => {};
