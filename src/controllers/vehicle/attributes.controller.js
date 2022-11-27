@@ -25,6 +25,13 @@ export const getColorController = async (req, res) => {
  */
 export const createColorController = async (req, res) => {};
 
+/**
+ * update a color in database
+ * @param {*} req
+ * @param {*} res
+ */
+export const updateColorController = async (req, res) => {};
+
 // YEAR
 
 /**
@@ -46,6 +53,13 @@ export const getYearController = async (req, res) => {
  * @param {*} res
  */
 export const createYearController = async (req, res) => {};
+
+/**
+ * update a year in database
+ * @param {*} req
+ * @param {*} res
+ */
+export const updateYearController = async (req, res) => {};
 
 // BRAND
 
@@ -69,6 +83,13 @@ export const getBrandController = async (req, res) => {
  */
 export const createBrandController = async (req, res) => {};
 
+/**
+ * update a brand in database
+ * @param {*} req
+ * @param {*} res
+ */
+export const updateBrandController = async (req, res) => {};
+
 // TYPE
 
 /**
@@ -90,3 +111,10 @@ export const getTypeController = async (req, res) => {
  * @param {*} res
  */
 export const createTypeController = async (req, res) => {};
+
+/**
+ * create a type in database
+ * @param {*} req
+ * @param {*} res
+ */
+export const updateTypeController = async (req, res) => {};
