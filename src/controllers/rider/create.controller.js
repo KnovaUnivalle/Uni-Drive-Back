@@ -29,7 +29,7 @@ const riderCreateController = async (req, res) => {
 		});
 
 	//create rider and send status
-	const rider = await Rider.create({
+	await Rider.create({
 		firstName: firstName,
 		lastName: lastName,
 		email: email,

@@ -53,7 +53,7 @@ const bidderCreateController = async (req, res) => {
 		CityID: city,
 	});
 
-	const vehicle = await Vehicle.create({
+	await Vehicle.create({
 		plate: plate,
 		available: available,
 		BrandVehicleId: brandVehicle,
