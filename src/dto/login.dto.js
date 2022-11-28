@@ -27,7 +27,13 @@ addErrors(ajv);
 
 const validateSchema = ajv.compile(LoginDTOSchema);
 
-//validate body
+/**
+ * Check the body of the request
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Function} next
+ * @returns status and message if is not valid
+ */
 const loginDTO = (req, res, next) => {
 	const isDTOValid = validateSchema(req.body);
 
