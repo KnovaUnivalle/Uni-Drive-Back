@@ -20,8 +20,10 @@ const riderTokenController = async (req, res, next) => {
 		const rider = await Rider.findOne({
 			where: { id: req.id, email: req.email },
 		});
+
 		if (!rider)
 			return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
 		next();
 	} catch (error) {
 		return res.status(401).send({ errors: ['Usuario no autorizado'] });
