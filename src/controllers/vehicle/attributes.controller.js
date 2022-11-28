@@ -12,11 +12,15 @@ import YearVehicle from '../../schemas/yearVehicle.schema.js';
  * @param {*} res
  */
 export const getColorController = async (req, res) => {
-	const data = await ColorVehicle.findAll({
-		where: { active: true },
-		attributes: ['id', 'name'],
-	});
-	res.json(data);
+	try {
+		const data = await ColorVehicle.findAll({
+			where: { active: true },
+			attributes: ['id', 'description'],
+		});
+		res.json(data);
+	} catch (error) {
+		return res.status(404).send({ errors: ['Colores no encontrados'] });
+	}
 };
 
 /**
@@ -78,11 +82,15 @@ export const updateColorController = async (req, res) => {
  * @param {*} res
  */
 export const getYearController = async (req, res) => {
-	const data = await YearVehicle.findAll({
-		where: { active: true },
-		attributes: ['id', 'description'],
-	});
-	res.json(data);
+	try {
+		const data = await YearVehicle.findAll({
+			where: { active: true },
+			attributes: ['id', 'description'],
+		});
+		res.json(data);
+	} catch (error) {
+		return res.status(404).send({ errors: ['Colores no encontrados'] });
+	}
 };
 
 /**
@@ -144,11 +152,15 @@ export const updateYearController = async (req, res) => {
  * @param {*} res
  */
 export const getBrandController = async (req, res) => {
-	const data = await BrandVehicle.findAll({
-		where: { active: true },
-		attributes: ['id', 'description'],
-	});
-	res.json(data);
+	try {
+		const data = await BrandVehicle.findAll({
+			where: { active: true },
+			attributes: ['id', 'description'],
+		});
+		res.json(data);
+	} catch (error) {
+		return res.status(404).send({ errors: ['Colores no encontrados'] });
+	}
 };
 
 /**
@@ -210,11 +222,15 @@ export const updateBrandController = async (req, res) => {
  * @param {*} res
  */
 export const getTypeController = async (req, res) => {
-	const data = await TypeVehicle.findAll({
-		where: { active: true },
-		attributes: ['id', 'description'],
-	});
-	res.json(data);
+	try {
+		const data = await TypeVehicle.findAll({
+			where: { active: true },
+			attributes: ['id', 'description'],
+		});
+		res.json(data);
+	} catch (error) {
+		return res.status(404).send({ errors: ['Colores no encontrados'] });
+	}
 };
 
 /**
