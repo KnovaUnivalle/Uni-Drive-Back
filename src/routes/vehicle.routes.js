@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import adminTokenController from '../controllers/admin/auth.controller.js';
+import authTokenController from '../controllers/auth.controller.js';
 import {
 	getBrandController,
 	getColorController,
@@ -10,19 +10,19 @@ import {
 const vehicleRouter = Router();
 
 vehicleRouter.get('/color', getColorController);
-vehicleRouter.post('/color', adminTokenController);
-vehicleRouter.put('/color/:id', adminTokenController);
+vehicleRouter.post('/color', authTokenController);
+vehicleRouter.put('/color/:id', authTokenController);
 
 vehicleRouter.get('/brand', getBrandController);
-vehicleRouter.post('/brand', adminTokenController);
-vehicleRouter.put('/brand/:id', adminTokenController);
+vehicleRouter.post('/brand', authTokenController);
+vehicleRouter.put('/brand/:id', authTokenController);
 
 vehicleRouter.get('/year', getYearController);
-vehicleRouter.post('/year', adminTokenController);
-vehicleRouter.put('/year/:id', adminTokenController);
+vehicleRouter.post('/year', authTokenController);
+vehicleRouter.put('/year/:id', authTokenController);
 
 vehicleRouter.get('/type', getTypeController);
-vehicleRouter.post('/type', adminTokenController);
-vehicleRouter.put('/type/:id', adminTokenController);
+vehicleRouter.post('/type', authTokenController);
+vehicleRouter.put('/type/:id', authTokenController);
 
 export default vehicleRouter;
