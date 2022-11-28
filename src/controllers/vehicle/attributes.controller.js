@@ -47,7 +47,27 @@ export const createColorController = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-export const updateColorController = async (req, res) => {};
+export const updateColorController = async (req, res) => {
+	const { id, email } = req;
+	const { attribute, description, active } = req.body;
+
+	const existingAdmin = await Admin.findOne({
+		where: { id: id, email: email },
+	});
+	if (!existingAdmin)
+		return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
+	await ColorVehicle.update(
+		{ description: description, active: active },
+		{
+			where: {
+				id: attribute,
+			},
+		}
+	);
+
+	return res.status(201).send('Color de vehiculo actualizado con éxito');
+};
 
 // YEAR
 
@@ -92,7 +112,27 @@ export const createYearController = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-export const updateYearController = async (req, res) => {};
+export const updateYearController = async (req, res) => {
+	const { id, email } = req;
+	const { attribute, description, active } = req.body;
+
+	const existingAdmin = await Admin.findOne({
+		where: { id: id, email: email },
+	});
+	if (!existingAdmin)
+		return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
+	await YearVehicle.update(
+		{ description: description, active: active },
+		{
+			where: {
+				id: attribute,
+			},
+		}
+	);
+
+	return res.status(201).send('Modelo de vehiculo actualizado con éxito');
+};
 
 // BRAND
 
@@ -129,7 +169,7 @@ export const createBrandController = async (req, res) => {
 		active: active,
 	});
 
-	return res.status(201).send('Marca de vehiculo registrado con éxito');
+	return res.status(201).send('Marca de vehiculo registrada con éxito');
 };
 
 /**
@@ -137,7 +177,27 @@ export const createBrandController = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-export const updateBrandController = async (req, res) => {};
+export const updateBrandController = async (req, res) => {
+	const { id, email } = req;
+	const { attribute, description, active } = req.body;
+
+	const existingAdmin = await Admin.findOne({
+		where: { id: id, email: email },
+	});
+	if (!existingAdmin)
+		return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
+	await BrandVehicle.update(
+		{ description: description, active: active },
+		{
+			where: {
+				id: attribute,
+			},
+		}
+	);
+
+	return res.status(201).send('Marca de vehiculo actualizada con éxito');
+};
 
 // TYPE
 
@@ -182,4 +242,24 @@ export const createTypeController = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-export const updateTypeController = async (req, res) => {};
+export const updateTypeController = async (req, res) => {
+	const { id, email } = req;
+	const { attribute, description, active } = req.body;
+
+	const existingAdmin = await Admin.findOne({
+		where: { id: id, email: email },
+	});
+	if (!existingAdmin)
+		return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
+	await TypeVehicle.update(
+		{ description: description, active: active },
+		{
+			where: {
+				id: attribute,
+			},
+		}
+	);
+
+	return res.status(201).send('Tipo de vehiculo actualizado con éxito');
+};
