@@ -49,7 +49,8 @@ export const createColorController = async (req, res) => {
  */
 export const updateColorController = async (req, res) => {
 	const { id, email } = req;
-	const { attribute, description, active } = req.body;
+	const { description, active } = req.body;
+	const { attribute } = req.params;
 
 	const existingAdmin = await Admin.findOne({
 		where: { id: id, email: email },
@@ -114,7 +115,8 @@ export const createYearController = async (req, res) => {
  */
 export const updateYearController = async (req, res) => {
 	const { id, email } = req;
-	const { attribute, description, active } = req.body;
+	const { description, active } = req.body;
+	const { attribute } = req.params;
 
 	const existingAdmin = await Admin.findOne({
 		where: { id: id, email: email },
@@ -179,7 +181,8 @@ export const createBrandController = async (req, res) => {
  */
 export const updateBrandController = async (req, res) => {
 	const { id, email } = req;
-	const { attribute, description, active } = req.body;
+	const { description, active } = req.body;
+	const { attribute } = req.params;
 
 	const existingAdmin = await Admin.findOne({
 		where: { id: id, email: email },
@@ -244,7 +247,8 @@ export const createTypeController = async (req, res) => {
  */
 export const updateTypeController = async (req, res) => {
 	const { id, email } = req;
-	const { attribute, description, active } = req.body;
+	const { description, active } = req.body;
+	const { attribute } = req.params;
 
 	const existingAdmin = await Admin.findOne({
 		where: { id: id, email: email },
