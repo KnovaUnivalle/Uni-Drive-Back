@@ -9,7 +9,7 @@ const YearVehicle = sequelize.define(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		name: {
+		description: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
