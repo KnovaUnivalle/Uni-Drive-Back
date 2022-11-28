@@ -1,5 +1,11 @@
 import Rider from '../../schemas/rider.schema.js';
 
+/**
+ * Create a rider in database if not exist
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
+ */
 const riderCreateController = async (req, res) => {
 	const {
 		firstName,

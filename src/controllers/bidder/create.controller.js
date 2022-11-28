@@ -1,6 +1,12 @@
 import Bidder from '../../schemas/bidder.schema.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
 
+/**
+ * Create a rider and its vehicle in database if not exist
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
+ */
 const bidderCreateController = async (req, res) => {
 	const {
 		firstName,

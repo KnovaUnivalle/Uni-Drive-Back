@@ -1,5 +1,12 @@
 import { jwtVerify } from 'jose';
 
+/**
+ * Check JWT and get payload
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Function} next
+ * @returns status and message if is not authorized
+ */
 const authTokenController = async (req, res, next) => {
 	const { authorization } = req.headers;
 

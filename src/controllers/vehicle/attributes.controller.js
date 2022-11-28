@@ -7,9 +7,10 @@ import YearVehicle from '../../schemas/yearVehicle.schema.js';
 // COLOR
 
 /**
- * send colors actives from database
- * @param {*} req
- * @param {*} res
+ * Send colors actives from database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const getColorController = async (req, res) => {
 	try {
@@ -17,16 +18,17 @@ export const getColorController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
-		res.json(data);
+		res.send(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Colores no encontrados'] });
 	}
 };
 
 /**
- * create a color in database
- * @param {*} req
- * @param {*} res
+ * Create a color in database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const createColorController = async (req, res) => {
 	const { id, email } = req;
@@ -47,9 +49,10 @@ export const createColorController = async (req, res) => {
 };
 
 /**
- * update a color in database
- * @param {*} req
- * @param {*} res
+ * Update a color in database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const updateColorController = async (req, res) => {
 	const { id, email } = req;
@@ -77,9 +80,10 @@ export const updateColorController = async (req, res) => {
 // YEAR
 
 /**
- * send years actives from database
- * @param {*} req
- * @param {*} res
+ * Send years actives from database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const getYearController = async (req, res) => {
 	try {
@@ -87,16 +91,17 @@ export const getYearController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
-		res.json(data);
+		res.send(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Colores no encontrados'] });
+		return res.status(404).send({ errors: ['Modelos no encontrados'] });
 	}
 };
 
 /**
- * create a year in database
- * @param {*} req
- * @param {*} res
+ * Create a year in database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const createYearController = async (req, res) => {
 	const { id, email } = req;
@@ -117,9 +122,10 @@ export const createYearController = async (req, res) => {
 };
 
 /**
- * update a year in database
- * @param {*} req
- * @param {*} res
+ * Update a year in database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const updateYearController = async (req, res) => {
 	const { id, email } = req;
@@ -147,9 +153,10 @@ export const updateYearController = async (req, res) => {
 // BRAND
 
 /**
- * send brands actives from database
- * @param {*} req
- * @param {*} res
+ * Send brands actives from database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const getBrandController = async (req, res) => {
 	try {
@@ -157,16 +164,17 @@ export const getBrandController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
-		res.json(data);
+		res.send(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Colores no encontrados'] });
+		return res.status(404).send({ errors: ['Marcas no encontradas'] });
 	}
 };
 
 /**
- * create a brand in database
- * @param {*} req
- * @param {*} res
+ * Create a brand in database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const createBrandController = async (req, res) => {
 	const { id, email } = req;
@@ -187,9 +195,10 @@ export const createBrandController = async (req, res) => {
 };
 
 /**
- * update a brand in database
- * @param {*} req
- * @param {*} res
+ * Update a brand in database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const updateBrandController = async (req, res) => {
 	const { id, email } = req;
@@ -217,9 +226,10 @@ export const updateBrandController = async (req, res) => {
 // TYPE
 
 /**
- * send types actives from database
- * @param {*} req
- * @param {*} res
+ * Send types actives from database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const getTypeController = async (req, res) => {
 	try {
@@ -227,16 +237,17 @@ export const getTypeController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
-		res.json(data);
+		res.send(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Colores no encontrados'] });
+		return res.status(404).send({ errors: ['Tipos no encontrados'] });
 	}
 };
 
 /**
- * create a type in database
- * @param {*} req
- * @param {*} res
+ * Create a type in database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const createTypeController = async (req, res) => {
 	const { id, email } = req;
@@ -257,9 +268,10 @@ export const createTypeController = async (req, res) => {
 };
 
 /**
- * create a type in database
- * @param {*} req
- * @param {*} res
+ * Create a type in database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
  */
 export const updateTypeController = async (req, res) => {
 	const { id, email } = req;
