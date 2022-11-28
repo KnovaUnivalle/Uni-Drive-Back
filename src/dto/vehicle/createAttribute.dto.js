@@ -4,7 +4,7 @@ import addErrors from 'ajv-errors';
 import addFormats from 'ajv-formats';
 import { activeDTOSchema, descriptionDTOSchema } from '../dtoTypes.js';
 
-const AttributeDTOSchema = Type.Object(
+const createAttributeDTOSchema = Type.Object(
 	{
 		description: descriptionDTOSchema,
 		active: activeDTOSchema,
@@ -24,10 +24,10 @@ const ajv = new Ajv({ allErrors: true })
 addFormats(ajv);
 addErrors(ajv);
 
-const validateSchema = ajv.compile(AttributesDTOSchema);
+const validateSchema = ajv.compile(createAttributeDTOSchema);
 
 //validate body
-const attributeDTO = (req, res, next) => {
+const createAttributeDTO = (req, res, next) => {
 	const isDTOValid = validateSchema(req.body);
 
 	if (!isDTOValid)
@@ -38,4 +38,4 @@ const attributeDTO = (req, res, next) => {
 	next();
 };
 
-export default attributeDTO;
+export default createAttributeDTO;
