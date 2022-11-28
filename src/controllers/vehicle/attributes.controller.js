@@ -80,7 +80,7 @@ export const updateColorController = async (req, res) => {
 export const getYearController = async (req, res) => {
 	const data = await YearVehicle.findAll({
 		where: { active: true },
-		attributes: ['id', 'name'],
+		attributes: ['id', 'description'],
 	});
 	res.json(data);
 };
@@ -146,7 +146,7 @@ export const updateYearController = async (req, res) => {
 export const getBrandController = async (req, res) => {
 	const data = await BrandVehicle.findAll({
 		where: { active: true },
-		attributes: ['id', 'name'],
+		attributes: ['id', 'description'],
 	});
 	res.json(data);
 };
@@ -212,7 +212,7 @@ export const updateBrandController = async (req, res) => {
 export const getTypeController = async (req, res) => {
 	const data = await TypeVehicle.findAll({
 		where: { active: true },
-		attributes: ['id', 'name'],
+		attributes: ['id', 'description'],
 	});
 	res.json(data);
 };
