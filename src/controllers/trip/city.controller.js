@@ -7,7 +7,7 @@ import Admin from '../../schemas/admin.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-export const getColorController = async (req, res) => {
+export const getCityController = async (req, res) => {
 	try {
 		const data = await City.findAll({
 			where: { active: true },
@@ -25,7 +25,7 @@ export const getColorController = async (req, res) => {
  * @param {Object} res
  * @returns status and message
  */
-export const getAllColorController = async (req, res) => {
+export const getAllCityController = async (req, res) => {
 	try {
 		const { id, email } = req;
 
@@ -47,7 +47,7 @@ export const getAllColorController = async (req, res) => {
  * @param {Object} res
  * @returns status and message
  */
-export const createColorController = async (req, res) => {
+export const createCityController = async (req, res) => {
 	const { id, email } = req;
 	const { description, active } = req.body;
 
@@ -71,7 +71,7 @@ export const createColorController = async (req, res) => {
  * @param {Object} res
  * @returns status and message
  */
-export const updateColorController = async (req, res) => {
+export const updateCityController = async (req, res) => {
 	const { id, email } = req;
 	const { description, active } = req.body;
 	const { city } = req.params;
