@@ -25,6 +25,21 @@ export const getColorController = async (req, res) => {
 };
 
 /**
+ * Send all colors from database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
+ */
+export const getAllColorController = async (req, res) => {
+	try {
+		const data = await ColorVehicle.findAll();
+		res.send(200).json(data);
+	} catch (error) {
+		return res.status(404).send({ errors: ['Colores no encontrados'] });
+	}
+};
+
+/**
  * Create a color in database
  * @param {Object} req
  * @param {Object} res
@@ -91,6 +106,21 @@ export const getYearController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
+		res.send(200).json(data);
+	} catch (error) {
+		return res.status(404).send({ errors: ['Modelos no encontrados'] });
+	}
+};
+
+/**
+ * Send all years from database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
+ */
+export const getAllYearController = async (req, res) => {
+	try {
+		const data = await YearVehicle.findAll();
 		res.send(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Modelos no encontrados'] });
@@ -171,6 +201,21 @@ export const getBrandController = async (req, res) => {
 };
 
 /**
+ * Send all brands from database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
+ */
+export const getAllBrandController = async (req, res) => {
+	try {
+		const data = await BrandVehicle.findAll();
+		res.send(200).json(data);
+	} catch (error) {
+		return res.status(404).send({ errors: ['Marcas no encontradas'] });
+	}
+};
+
+/**
  * Create a brand in database
  * @param {Object} req
  * @param {Object} res
@@ -237,6 +282,21 @@ export const getTypeController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
+		res.send(200).json(data);
+	} catch (error) {
+		return res.status(404).send({ errors: ['Tipos no encontrados'] });
+	}
+};
+
+/**
+ * Send all types from database
+ * @param {Object} req
+ * @param {Object} res
+ * @returns status and message
+ */
+export const getAllTypeController = async (req, res) => {
+	try {
+		const data = await TypeVehicle.findAll();
 		res.send(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Tipos no encontrados'] });
