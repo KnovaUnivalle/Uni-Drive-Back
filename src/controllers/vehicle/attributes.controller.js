@@ -32,6 +32,14 @@ export const getColorController = async (req, res) => {
  */
 export const getAllColorController = async (req, res) => {
 	try {
+		const { id, email } = req;
+
+		const existingAdmin = await Admin.findOne({
+			where: { id: id, email: email },
+		});
+		if (!existingAdmin)
+			return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
 		const data = await ColorVehicle.findAll();
 		res.send(200).json(data);
 	} catch (error) {
@@ -120,6 +128,14 @@ export const getYearController = async (req, res) => {
  */
 export const getAllYearController = async (req, res) => {
 	try {
+		const { id, email } = req;
+
+		const existingAdmin = await Admin.findOne({
+			where: { id: id, email: email },
+		});
+		if (!existingAdmin)
+			return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
 		const data = await YearVehicle.findAll();
 		res.send(200).json(data);
 	} catch (error) {
@@ -208,6 +224,14 @@ export const getBrandController = async (req, res) => {
  */
 export const getAllBrandController = async (req, res) => {
 	try {
+		const { id, email } = req;
+
+		const existingAdmin = await Admin.findOne({
+			where: { id: id, email: email },
+		});
+		if (!existingAdmin)
+			return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
 		const data = await BrandVehicle.findAll();
 		res.send(200).json(data);
 	} catch (error) {
@@ -296,6 +320,14 @@ export const getTypeController = async (req, res) => {
  */
 export const getAllTypeController = async (req, res) => {
 	try {
+		const { id, email } = req;
+
+		const existingAdmin = await Admin.findOne({
+			where: { id: id, email: email },
+		});
+		if (!existingAdmin)
+			return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
 		const data = await TypeVehicle.findAll();
 		res.send(200).json(data);
 	} catch (error) {

@@ -23,7 +23,7 @@ import attributeDTO from '../dto/vehicle/attribute.dto.js';
 const vehicleRouter = Router();
 
 vehicleRouter.get('/color', getColorController);
-vehicleRouter.get('/allColor', getAllColorController);
+vehicleRouter.get('/allColor', authTokenController, getAllColorController);
 vehicleRouter.post(
 	'/color',
 	authTokenController,
@@ -38,7 +38,7 @@ vehicleRouter.put(
 );
 
 vehicleRouter.get('/brand', getBrandController);
-vehicleRouter.get('/allBrand', getAllBrandController);
+vehicleRouter.get('/allBrand', authTokenController, getAllBrandController);
 vehicleRouter.post(
 	'/brand',
 	authTokenController,
@@ -53,7 +53,7 @@ vehicleRouter.put(
 );
 
 vehicleRouter.get('/year', getYearController);
-vehicleRouter.get('/allYear', getAllYearController);
+vehicleRouter.get('/allYear', authTokenController, getAllYearController);
 vehicleRouter.post(
 	'/year',
 	authTokenController,
@@ -68,7 +68,7 @@ vehicleRouter.put(
 );
 
 vehicleRouter.get('/type', getTypeController);
-vehicleRouter.get('/allType', getAllTypeController);
+vehicleRouter.get('/allType', authTokenController, getAllTypeController);
 vehicleRouter.post(
 	'/type',
 	authTokenController,
