@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import createTripController from '../controllers/trip/create.controller.js';
 import tripCreateDTO from '../dto/trip/create.dto.js';
-import authTokenController from '../controllers/auth.controller.js';
+import authenticationController from '../controllers/authentication.controller.js';
 import attributeDTO from '../dto/vehicle/attribute.dto.js';
 import {
 	createCityController,
@@ -14,22 +14,22 @@ const tripRouter = Router();
 
 tripRouter.post(
 	'/create',
-	authTokenController,
+	authenticationController,
 	tripCreateDTO,
 	createTripController
 );
 
 tripRouter.get('/city', getCityController);
-tripRouter.get('/allCity', authTokenController, getAllCityController);
+tripRouter.get('/allCity', authenticationController, getAllCityController);
 tripRouter.post(
 	'/city',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	createCityController
 );
 tripRouter.put(
 	'/city/:city',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	updateCityController
 );

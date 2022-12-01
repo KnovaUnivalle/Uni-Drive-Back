@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import authTokenController from '../controllers/auth.controller.js';
+import authenticationController from '../controllers/authentication.controller.js';
 import {
 	createBrandController,
 	createColorController,
@@ -23,61 +23,61 @@ import attributeDTO from '../dto/vehicle/attribute.dto.js';
 const vehicleRouter = Router();
 
 vehicleRouter.get('/color', getColorController);
-vehicleRouter.get('/allColor', authTokenController, getAllColorController);
+vehicleRouter.get('/allColor', authenticationController, getAllColorController);
 vehicleRouter.post(
 	'/color',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	createColorController
 );
 vehicleRouter.put(
 	'/color/:attribute',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	updateColorController
 );
 
 vehicleRouter.get('/brand', getBrandController);
-vehicleRouter.get('/allBrand', authTokenController, getAllBrandController);
+vehicleRouter.get('/allBrand', authenticationController, getAllBrandController);
 vehicleRouter.post(
 	'/brand',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	createBrandController
 );
 vehicleRouter.put(
 	'/brand/:attribute',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	updateBrandController
 );
 
 vehicleRouter.get('/year', getYearController);
-vehicleRouter.get('/allYear', authTokenController, getAllYearController);
+vehicleRouter.get('/allYear', authenticationController, getAllYearController);
 vehicleRouter.post(
 	'/year',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	createYearController
 );
 vehicleRouter.put(
 	'/year/:attribute',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	updateYearController
 );
 
 vehicleRouter.get('/type', getTypeController);
-vehicleRouter.get('/allType', authTokenController, getAllTypeController);
+vehicleRouter.get('/allType', authenticationController, getAllTypeController);
 vehicleRouter.post(
 	'/type',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	createTypeController
 );
 vehicleRouter.put(
 	'/type/:attribute',
-	authTokenController,
+	authenticationController,
 	attributeDTO,
 	updateTypeController
 );
