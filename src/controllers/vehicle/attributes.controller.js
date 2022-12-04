@@ -18,7 +18,7 @@ export const getColorController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
-		res.send(200).json(data);
+		res.status(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Colores no encontrados'] });
 	}
@@ -33,6 +33,9 @@ export const getColorController = async (req, res) => {
 export const getAllColorController = async (req, res) => {
 	try {
 		const { id, email } = req;
+		const page = req.query.pages || 0;
+		const limit = 20;
+		const skipElements = limit * page;
 
 		const existingAdmin = await Admin.findOne({
 			where: { id: id, email: email },
@@ -40,8 +43,11 @@ export const getAllColorController = async (req, res) => {
 		if (!existingAdmin)
 			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
-		const data = await ColorVehicle.findAll();
-		res.send(200).json(data);
+		const data = await ColorVehicle.findAll({
+			offset: skipElements,
+			limit: limit,
+		});
+		res.status(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Colores no encontrados'] });
 	}
@@ -114,7 +120,7 @@ export const getYearController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
-		res.send(200).json(data);
+		res.status(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Modelos no encontrados'] });
 	}
@@ -129,6 +135,9 @@ export const getYearController = async (req, res) => {
 export const getAllYearController = async (req, res) => {
 	try {
 		const { id, email } = req;
+		const page = req.query.pages || 0;
+		const limit = 20;
+		const skipElements = limit * page;
 
 		const existingAdmin = await Admin.findOne({
 			where: { id: id, email: email },
@@ -136,8 +145,11 @@ export const getAllYearController = async (req, res) => {
 		if (!existingAdmin)
 			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
-		const data = await YearVehicle.findAll();
-		res.send(200).json(data);
+		const data = await YearVehicle.findAll({
+			offset: skipElements,
+			limit: limit,
+		});
+		res.status(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Modelos no encontrados'] });
 	}
@@ -210,7 +222,7 @@ export const getBrandController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
-		res.send(200).json(data);
+		res.status(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Marcas no encontradas'] });
 	}
@@ -225,6 +237,9 @@ export const getBrandController = async (req, res) => {
 export const getAllBrandController = async (req, res) => {
 	try {
 		const { id, email } = req;
+		const page = req.query.pages || 0;
+		const limit = 20;
+		const skipElements = limit * page;
 
 		const existingAdmin = await Admin.findOne({
 			where: { id: id, email: email },
@@ -232,8 +247,11 @@ export const getAllBrandController = async (req, res) => {
 		if (!existingAdmin)
 			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
-		const data = await BrandVehicle.findAll();
-		res.send(200).json(data);
+		const data = await BrandVehicle.findAll({
+			offset: skipElements,
+			limit: limit,
+		});
+		res.status(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Marcas no encontradas'] });
 	}
@@ -306,7 +324,7 @@ export const getTypeController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
-		res.send(200).json(data);
+		res.status(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Tipos no encontrados'] });
 	}
@@ -321,6 +339,9 @@ export const getTypeController = async (req, res) => {
 export const getAllTypeController = async (req, res) => {
 	try {
 		const { id, email } = req;
+		const page = req.query.pages || 0;
+		const limit = 20;
+		const skipElements = limit * page;
 
 		const existingAdmin = await Admin.findOne({
 			where: { id: id, email: email },
@@ -328,8 +349,11 @@ export const getAllTypeController = async (req, res) => {
 		if (!existingAdmin)
 			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
-		const data = await TypeVehicle.findAll();
-		res.send(200).json(data);
+		const data = await TypeVehicle.findAll({
+			offset: skipElements,
+			limit: limit,
+		});
+		res.status(200).json(data);
 	} catch (error) {
 		return res.status(404).send({ errors: ['Tipos no encontrados'] });
 	}
