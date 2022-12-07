@@ -32,7 +32,7 @@ const bidderCreateController = async (req, res) => {
 			errors: ['Ya existe un conductor con ese email registrado'],
 		});
 
-	//validate duplicate palte
+	//validate duplicate plate
 	const vehicleByPlate = await Vehicle.findOne({ where: { plate: plate } });
 	if (vehicleByPlate)
 		return res.status(409).send({
