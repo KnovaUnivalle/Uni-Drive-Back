@@ -6,7 +6,7 @@ import Vehicle from '../../schemas/vehicle.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-const bidderCreateController = async (req, res) => {
+const vehicleCreateController = async (req, res) => {
 	const {
 		plate,
 		available,
@@ -31,4 +31,4 @@ const bidderCreateController = async (req, res) => {
 	return res.status(201).send('Registrado con éxito');
 };
 
-export default bidderCreateController;
+export default vehicleCreateController;

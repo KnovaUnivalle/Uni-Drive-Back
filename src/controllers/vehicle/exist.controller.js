@@ -6,7 +6,7 @@ import Vehicle from '../../schemas/vehicle.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-const bidderCreateController = async (req, res, next) => {
+const vehicleExistController = async (req, res, next) => {
 	const { plate } = req.body;
 
 	//validate duplicate plate
@@ -19,4 +19,4 @@ const bidderCreateController = async (req, res, next) => {
 	next();
 };
 
-export default bidderCreateController;
+export default vehicleExistController;

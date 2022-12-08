@@ -6,7 +6,7 @@ import Rider from '../../schemas/rider.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-const riderCreateController = async (req, res, next) => {
+const riderExistController = async (req, res, next) => {
 	const { email, document } = req.body;
 
 	//validate duplicate email
@@ -28,4 +28,4 @@ const riderCreateController = async (req, res, next) => {
 	next();
 };
 
-export default riderCreateController;
+export default riderExistController;

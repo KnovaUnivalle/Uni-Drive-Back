@@ -6,7 +6,7 @@ import Bidder from '../../schemas/bidder.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-const bidderCreateController = async (req, res, next) => {
+const bidderExistController = async (req, res, next) => {
 	const { email, document } = req.body;
 
 	//validate duplicate email
@@ -28,4 +28,4 @@ const bidderCreateController = async (req, res, next) => {
 	next();
 };
 
-export default bidderCreateController;
+export default bidderExistController;
