@@ -36,8 +36,23 @@ const riderLoginController = async (req, res) => {
 		.setIssuedAt()
 		.setExpirationTime('7d')
 		.sign(encoder.encode(process.env.JWT_PRIVATE_KEY));
+	let d = new Date();
+	d.setDate(d.getDate() + 7);
 
-	return res.send({ jwt });
+	//cookie settings
+	res.cookie('jwt', jwt, {
+		expires: d,
+		httpOnly: true,
+		secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+		sameSite: 'none',
+	});
+
+	const user = {
+		firstName: riderByEmail.firstName,
+		lastName: riderByEmail.lastName,
+	};
+
+	return res.send({ jwt, user });
 };
 
 export default riderLoginController;

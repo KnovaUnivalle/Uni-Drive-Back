@@ -37,7 +37,23 @@ const bidderLoginController = async (req, res) => {
 		.setExpirationTime('7d')
 		.sign(encoder.encode(process.env.JWT_PRIVATE_KEY));
 
-	return res.send({ jwt });
+	let d = new Date();
+	d.setDate(d.getDate() + 7);
+
+	//cookie settings
+	res.cookie('jwt', jwt, {
+		expires: d,
+		httpOnly: true,
+		secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+		sameSite: 'none',
+	});
+
+	const user = {
+		firstName: bidderByEmail.firstName,
+		lastName: bidderByEmail.lastName,
+	};
+
+	return res.status(200).json({ jwt, user });
 };
 
 export default bidderLoginController;
