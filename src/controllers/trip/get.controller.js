@@ -10,7 +10,7 @@ export const getTrips = async (req, res) => {
 	const { id } = req;
 
 	const data = await Trip.findAll({
-		where: { BidderId: id },
+		where: { active: true, BidderId: id },
 		attributes: [
 			'id',
 			'date',

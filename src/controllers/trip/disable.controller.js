@@ -1,4 +1,4 @@
-import Trip from '../../schemas/trip.schema';
+import Trip from '../../schemas/trip.schema.js';
 
 /**
  * Update status Trip in database
