@@ -16,7 +16,7 @@ const createTripController = async (req, res) => {
 		description: description,
 		toUniversity: toUniversity,
 		meetPoint: meetPoint,
-		VehicleID: vehicle,
+		VehicleId: vehicle,
 	});
 
 	return res.status(201).send('Viaje registrado con éxito');
