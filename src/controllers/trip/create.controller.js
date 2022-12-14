@@ -6,12 +6,21 @@ import Trip from '../../schemas/trip.schema.js';
  * @param {Object} res
  */
 const createTripController = async (req, res) => {
-	const { vehicle, date, day, rate, description, toUniversity, meetPoint } =
-		req.body;
+	const {
+		vehicle,
+		date,
+		day,
+		hour,
+		rate,
+		description,
+		toUniversity,
+		meetPoint,
+	} = req.body;
 	// /create trip and send status
 	const trip = await Trip.create({
 		date: date,
 		day: day,
+		hour: hour,
 		rate: rate,
 		description: description,
 		toUniversity: toUniversity,

@@ -18,6 +18,10 @@ const Trip = sequelize.define(
 			type: DataTypes.SMALLINT,
 			allowNull: false,
 		},
+		hour: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 		rate: {
 			type: DataTypes.INTEGER,
 			allowNull: false,

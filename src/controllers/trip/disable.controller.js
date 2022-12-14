@@ -7,7 +7,7 @@ import Trip from '../../schemas/trip.schema.js';
  * @returns status and message
  */
 export const disableTrip = async (req, res) => {
-	const { id } = req;
+	const { id } = req.body;
 
 	await Trip.update(
 		{

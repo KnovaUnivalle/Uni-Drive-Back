@@ -20,6 +20,7 @@ export const getTrips = async (req, res) => {
 			'id',
 			'date',
 			'day',
+			'hour',
 			'rate',
 			'description',
 			'toUniversity',
