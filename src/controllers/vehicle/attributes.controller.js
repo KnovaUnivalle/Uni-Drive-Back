@@ -1,4 +1,3 @@
-import Admin from '../../schemas/admin.schema.js';
 import BrandVehicle from '../../schemas/brandVehicle.schema.js';
 import ColorVehicle from '../../schemas/colorVehicle.schema.js';
 import TypeVehicle from '../../schemas/typeVehicle.schema.js';
@@ -32,16 +31,9 @@ export const getColorController = async (req, res) => {
  */
 export const getAllColorController = async (req, res) => {
 	try {
-		const { id, email } = req;
 		const page = req.query.pages || 0;
 		const limit = 20;
 		const skipElements = limit * page;
-
-		const existingAdmin = await Admin.findOne({
-			where: { id: id, email: email },
-		});
-		if (!existingAdmin)
-			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 		const data = await ColorVehicle.findAll({
 			offset: skipElements,
@@ -60,14 +52,7 @@ export const getAllColorController = async (req, res) => {
  * @returns status and message
  */
 export const createColorController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await ColorVehicle.create({
 		description: description,
@@ -84,15 +69,8 @@ export const createColorController = async (req, res) => {
  * @returns status and message
  */
 export const updateColorController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
 	const { attribute } = req.params;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await ColorVehicle.update(
 		{ description: description, active: active },
@@ -134,16 +112,9 @@ export const getYearController = async (req, res) => {
  */
 export const getAllYearController = async (req, res) => {
 	try {
-		const { id, email } = req;
 		const page = req.query.pages || 0;
 		const limit = 20;
 		const skipElements = limit * page;
-
-		const existingAdmin = await Admin.findOne({
-			where: { id: id, email: email },
-		});
-		if (!existingAdmin)
-			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 		const data = await YearVehicle.findAll({
 			offset: skipElements,
@@ -162,14 +133,7 @@ export const getAllYearController = async (req, res) => {
  * @returns status and message
  */
 export const createYearController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await YearVehicle.create({
 		description: description,
@@ -186,15 +150,8 @@ export const createYearController = async (req, res) => {
  * @returns status and message
  */
 export const updateYearController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
 	const { attribute } = req.params;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await YearVehicle.update(
 		{ description: description, active: active },
@@ -236,16 +193,9 @@ export const getBrandController = async (req, res) => {
  */
 export const getAllBrandController = async (req, res) => {
 	try {
-		const { id, email } = req;
 		const page = req.query.pages || 0;
 		const limit = 20;
 		const skipElements = limit * page;
-
-		const existingAdmin = await Admin.findOne({
-			where: { id: id, email: email },
-		});
-		if (!existingAdmin)
-			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 		const data = await BrandVehicle.findAll({
 			offset: skipElements,
@@ -264,14 +214,7 @@ export const getAllBrandController = async (req, res) => {
  * @returns status and message
  */
 export const createBrandController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await BrandVehicle.create({
 		description: description,
@@ -288,15 +231,8 @@ export const createBrandController = async (req, res) => {
  * @returns status and message
  */
 export const updateBrandController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
 	const { attribute } = req.params;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await BrandVehicle.update(
 		{ description: description, active: active },
@@ -338,16 +274,9 @@ export const getTypeController = async (req, res) => {
  */
 export const getAllTypeController = async (req, res) => {
 	try {
-		const { id, email } = req;
 		const page = req.query.pages || 0;
 		const limit = 20;
 		const skipElements = limit * page;
-
-		const existingAdmin = await Admin.findOne({
-			where: { id: id, email: email },
-		});
-		if (!existingAdmin)
-			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 		const data = await TypeVehicle.findAll({
 			offset: skipElements,
@@ -366,14 +295,7 @@ export const getAllTypeController = async (req, res) => {
  * @returns status and message
  */
 export const createTypeController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await TypeVehicle.create({
 		description: description,
@@ -390,15 +312,8 @@ export const createTypeController = async (req, res) => {
  * @returns status and message
  */
 export const updateTypeController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
 	const { attribute } = req.params;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await TypeVehicle.update(
 		{ description: description, active: active },
