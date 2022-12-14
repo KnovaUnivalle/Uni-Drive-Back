@@ -9,6 +9,8 @@ import { getVehicles } from '../controllers/vehicle/get.controller.js';
 import bidderExistController from '../controllers/bidder/exist.controller.js';
 import vehicleExistController from '../controllers/vehicle/exist.controller.js';
 import vehicleCreateController from '../controllers/vehicle/create.controller.js';
+import { getTrips } from '../controllers/trip/get.controller.js';
+import { disableTrip } from '../controllers/trip/disable.controller.js';
 
 const bidderRouter = Router();
 
@@ -26,6 +28,18 @@ bidderRouter.get(
 	authenticationController,
 	authorizationController,
 	getVehicles
+);
+bidderRouter.get(
+	'/trips',
+	authenticationController,
+	authorizationController,
+	getTrips
+);
+bidderRouter.put(
+	'/trips/:id',
+	authenticationController,
+	authorizationController,
+	disableTrip
 );
 
 export default bidderRouter;
