@@ -106,14 +106,6 @@ export const dayDTOSchema = Type.Integer({
 	},
 });
 
-export const hourDTOSchema = Type.String({
-	maxLength: 5,
-	errorMessage: {
-		type: 'El tipo de la descripción no es válido, debe ser una cadena de caracteres',
-		maxLength: 'La descripción debe tener como máximo 5 caracteres de longitud',
-	},
-});
-
 export const descriptionDTOSchema = Type.String({
 	maxLength: 255,
 	errorMessage: {

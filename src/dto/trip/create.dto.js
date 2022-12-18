@@ -5,7 +5,6 @@ import addFormats from 'ajv-formats';
 import {
 	dateTimeDTOSchema,
 	dayDTOSchema,
-	hourDTOSchema,
 	descriptionDTOSchema,
 	idDTOSchema,
 	meetPointDTOSchema,
@@ -18,7 +17,6 @@ const TripCreateDTOSchema = Type.Object(
 		vehicle: idDTOSchema,
 		date: dateTimeDTOSchema,
 		day: dayDTOSchema,
-		hour: hourDTOSchema,
 		rate: rateDTOSchema,
 		description: descriptionDTOSchema,
 		toUniversity: toUniversityDTOSchema,
