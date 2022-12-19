@@ -59,6 +59,16 @@ export const createColorController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
 
+		const colorExisting = await ColorVehicle.findOne({
+			where: {
+				id: attribute,
+			},
+		});
+		if (colorExisting)
+			return res.status(409).send({
+				errors: ['Ya existe un color con esa descripción'],
+			});
+
 		const color = await ColorVehicle.create({
 			description: description,
 			active: active,
@@ -146,6 +156,16 @@ export const getAllYearController = async (req, res) => {
 export const createYearController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
+
+		const yearExisting = await YearVehicle.findOne({
+			where: {
+				id: attribute,
+			},
+		});
+		if (yearExisting)
+			return res.status(409).send({
+				errors: ['Ya existe un modelo con esa descripción'],
+			});
 
 		const year = await YearVehicle.create({
 			description: description,
@@ -236,6 +256,16 @@ export const createBrandController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
 
+		const brandExisting = await BrandVehicle.findOne({
+			where: {
+				id: attribute,
+			},
+		});
+		if (brandExisting)
+			return res.status(409).send({
+				errors: ['Ya existe una marca con esa descripción'],
+			});
+
 		const brand = await BrandVehicle.create({
 			description: description,
 			active: active,
@@ -323,6 +353,16 @@ export const getAllTypeController = async (req, res) => {
 export const createTypeController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
+
+		const typeExisting = await TypeVehicle.findOne({
+			where: {
+				id: attribute,
+			},
+		});
+		if (typeExisting)
+			return res.status(409).send({
+				errors: ['Ya existe una tipo de vehiculos con esa descripción'],
+			});
 
 		const type = await TypeVehicle.create({
 			description: description,
