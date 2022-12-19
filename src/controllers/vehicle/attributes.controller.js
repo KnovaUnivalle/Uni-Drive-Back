@@ -56,14 +56,17 @@ export const getAllColorController = async (req, res) => {
  * @returns status and message
  */
 export const createColorController = async (req, res) => {
-	const { description, active } = req.body;
+	try {
+		const { description, active } = req.body;
 
-	await ColorVehicle.create({
-		description: description,
-		active: active,
-	});
-
-	return res.status(201).send('Color de vehiculo registrado con éxito');
+		await ColorVehicle.create({
+			description: description,
+			active: active,
+		});
+		return res.status(201).send('Color de vehiculo registrado con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
 
 /**
@@ -141,14 +144,18 @@ export const getAllYearController = async (req, res) => {
  * @returns status and message
  */
 export const createYearController = async (req, res) => {
-	const { description, active } = req.body;
+	try {
+		const { description, active } = req.body;
 
-	await YearVehicle.create({
-		description: description,
-		active: active,
-	});
+		await YearVehicle.create({
+			description: description,
+			active: active,
+		});
 
-	return res.status(201).send('Modelo de vehiculo registrado con éxito');
+		return res.status(201).send('Modelo de vehiculo registrado con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
 
 /**
@@ -226,14 +233,17 @@ export const getAllBrandController = async (req, res) => {
  * @returns status and message
  */
 export const createBrandController = async (req, res) => {
-	const { description, active } = req.body;
+	try {
+		const { description, active } = req.body;
 
-	await BrandVehicle.create({
-		description: description,
-		active: active,
-	});
-
-	return res.status(201).send('Marca de vehiculo registrada con éxito');
+		await BrandVehicle.create({
+			description: description,
+			active: active,
+		});
+		return res.status(201).send('Marca de vehiculo registrada con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
 
 /**
@@ -296,9 +306,11 @@ export const getAllTypeController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Tipos no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Tipos no encontrados'] });
+		return res.status(500);
 	}
 };
 
@@ -309,14 +321,18 @@ export const getAllTypeController = async (req, res) => {
  * @returns status and message
  */
 export const createTypeController = async (req, res) => {
-	const { description, active } = req.body;
+	try {
+		const { description, active } = req.body;
 
-	await TypeVehicle.create({
-		description: description,
-		active: active,
-	});
+		await TypeVehicle.create({
+			description: description,
+			active: active,
+		});
 
-	return res.status(201).send('Tipo de vehiculo registrado con éxito');
+		return res.status(201).send('Tipo de vehiculo registrado con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
 
 /**
