@@ -1,6 +1,12 @@
 import { SignJWT } from 'jose';
 import Bidder from '../../schemas/bidder.schema.js';
 
+/**
+ * Send a JWT if the credentials are correct
+ * @param {Object} req
+ * @param {Object} res
+ * @returns JWT, status and message
+ */
 const bidderLoginController = async (req, res) => {
 	const { email, password } = req.body;
 

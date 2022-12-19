@@ -1,5 +1,10 @@
 import Trip from '../../schemas/trip.schema.js';
 
+/**
+ * Create a trip in database
+ * @param {Object} req
+ * @param {Object} res
+ */
 const createTripController = async (req, res) => {
 	const { vehicle, date, day, rate, description, toUniversity, meetPoint } =
 		req.body;
@@ -11,7 +16,7 @@ const createTripController = async (req, res) => {
 		description: description,
 		toUniversity: toUniversity,
 		meetPoint: meetPoint,
-		VehicleID: vehicle,
+		VehicleId: vehicle,
 	});
 
 	return res.status(201).send('Viaje registrado con éxito');

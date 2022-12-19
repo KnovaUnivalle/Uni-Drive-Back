@@ -1,6 +1,12 @@
 import { SignJWT } from 'jose';
 import Rider from '../../schemas/rider.schema.js';
 
+/**
+ * Send a JWT if the credentials are correct
+ * @param {Object} req
+ * @param {Object} res
+ * @returns JWT, status and message
+ */
 const riderLoginController = async (req, res) => {
 	const { email, password } = req.body;
 

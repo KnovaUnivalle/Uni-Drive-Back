@@ -2,12 +2,12 @@ import { Type } from '@sinclair/typebox';
 import Ajv from 'ajv';
 import addErrors from 'ajv-errors';
 import addFormats from 'ajv-formats';
-import { emailDTOSchema, passwordDTOSchema } from './dtoTypes.js';
+import { activeDTOSchema, descriptionDTOSchema } from '../dtoTypes.js';
 
-const LoginDTOSchema = Type.Object(
+const attributeDTOSchema = Type.Object(
 	{
-		email: emailDTOSchema,
-		password: passwordDTOSchema,
+		description: descriptionDTOSchema,
+		active: activeDTOSchema,
 	},
 	{
 		additionalProperties: false,
@@ -21,11 +21,10 @@ const ajv = new Ajv({ allErrors: true })
 	.addKeyword('kind')
 	.addKeyword('modifier');
 
-ajv.addFormat('password', /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/);
-addFormats(ajv, ['email']);
+addFormats(ajv);
 addErrors(ajv);
 
-const validateSchema = ajv.compile(LoginDTOSchema);
+const validateSchema = ajv.compile(attributeDTOSchema);
 
 /**
  * Check the body of the request
@@ -34,7 +33,7 @@ const validateSchema = ajv.compile(LoginDTOSchema);
  * @param {Function} next
  * @returns status and message if is not valid
  */
-const loginDTO = (req, res, next) => {
+const attributeDTO = (req, res, next) => {
 	const isDTOValid = validateSchema(req.body);
 
 	if (!isDTOValid)
@@ -45,4 +44,4 @@ const loginDTO = (req, res, next) => {
 	next();
 };
 
-export default loginDTO;
+export default attributeDTO;

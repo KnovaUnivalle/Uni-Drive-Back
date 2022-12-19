@@ -137,3 +137,9 @@ export const toUniversityDTOSchema = Type.Boolean({
 		type: 'El tipo de a la universidad debe ser boleano',
 	},
 });
+
+export const activeDTOSchema = Type.Boolean({
+	errorMessage: {
+		type: 'El tipo del estado debe ser boleano',
+	},
+});

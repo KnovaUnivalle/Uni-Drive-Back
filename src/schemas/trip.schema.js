@@ -34,6 +34,11 @@ const Trip = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		active: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
+			defaultValue: true,
+		},
 	},
 	{
 		timestamps: false, // no update at, no create at

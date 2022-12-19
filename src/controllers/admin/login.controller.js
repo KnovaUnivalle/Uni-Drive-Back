@@ -1,6 +1,12 @@
 import { SignJWT } from 'jose';
 import Admin from '../../schemas/admin.schema.js';
 
+/**
+ * Send a JWT if the credentials are correct
+ * @param {Object} req
+ * @param {Object} res
+ * @returns JWT, status and message
+ */
 const adminLoginController = async (req, res) => {
 	const { email, password } = req.body;
 
