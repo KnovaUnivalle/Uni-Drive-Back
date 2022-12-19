@@ -86,19 +86,33 @@ export const createColorController = async (req, res) => {
  * @returns status and message
  */
 export const updateColorController = async (req, res) => {
-	const { description, active } = req.body;
-	const { attribute } = req.params;
+	try {
+		const { description, active } = req.body;
+		const { attribute } = req.params;
 
-	await ColorVehicle.update(
-		{ description: description, active: active },
-		{
+		const colorExisting = await ColorVehicle.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
-		}
-	);
+		});
+		if (colorExisting)
+			return res.status(409).send({
+				errors: ['Ya existe un color con esa descripción'],
+			});
 
-	return res.status(201).send('Color de vehiculo actualizado con éxito');
+		await ColorVehicle.update(
+			{ description: description, active: active },
+			{
+				where: {
+					id: attribute,
+				},
+			}
+		);
+
+		return res.status(201).send('Color de vehiculo actualizado con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
 
 // YEAR
@@ -185,19 +199,33 @@ export const createYearController = async (req, res) => {
  * @returns status and message
  */
 export const updateYearController = async (req, res) => {
-	const { description, active } = req.body;
-	const { attribute } = req.params;
+	try {
+		const { description, active } = req.body;
+		const { attribute } = req.params;
 
-	await YearVehicle.update(
-		{ description: description, active: active },
-		{
+		const yearExisting = await YearVehicle.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
-		}
-	);
+		});
+		if (yearExisting)
+			return res.status(409).send({
+				errors: ['Ya existe un modelo con esa descripción'],
+			});
 
-	return res.status(201).send('Modelo de vehiculo actualizado con éxito');
+		await YearVehicle.update(
+			{ description: description, active: active },
+			{
+				where: {
+					id: attribute,
+				},
+			}
+		);
+
+		return res.status(201).send('Modelo de vehiculo actualizado con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
 
 // BRAND
@@ -283,19 +311,33 @@ export const createBrandController = async (req, res) => {
  * @returns status and message
  */
 export const updateBrandController = async (req, res) => {
-	const { description, active } = req.body;
-	const { attribute } = req.params;
+	try {
+		const { description, active } = req.body;
+		const { attribute } = req.params;
 
-	await BrandVehicle.update(
-		{ description: description, active: active },
-		{
+		const brandExisting = await BrandVehicle.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
-		}
-	);
+		});
+		if (brandExisting)
+			return res.status(409).send({
+				errors: ['Ya existe una marca con esa descripción'],
+			});
 
-	return res.status(201).send('Marca de vehiculo actualizada con éxito');
+		await BrandVehicle.update(
+			{ description: description, active: active },
+			{
+				where: {
+					id: attribute,
+				},
+			}
+		);
+
+		return res.status(201).send('Marca de vehiculo actualizada con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
 
 // TYPE
@@ -382,17 +424,31 @@ export const createTypeController = async (req, res) => {
  * @returns status and message
  */
 export const updateTypeController = async (req, res) => {
-	const { description, active } = req.body;
-	const { attribute } = req.params;
+	try {
+		const { description, active } = req.body;
+		const { attribute } = req.params;
 
-	await TypeVehicle.update(
-		{ description: description, active: active },
-		{
+		const typeExisting = await TypeVehicle.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
-		}
-	);
+		});
+		if (typeExisting)
+			return res.status(409).send({
+				errors: ['Ya existe una tipo de vehiculos con esa descripción'],
+			});
 
-	return res.status(201).send('Tipo de vehiculo actualizado con éxito');
+		await TypeVehicle.update(
+			{ description: description, active: active },
+			{
+				where: {
+					id: attribute,
+				},
+			}
+		);
+
+		return res.status(201).send('Tipo de vehiculo actualizado con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
