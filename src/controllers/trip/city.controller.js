@@ -57,7 +57,7 @@ export const createCityController = async (req, res) => {
 
 		const cityExisting = await City.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
 		});
 		if (cityExisting)
@@ -83,15 +83,8 @@ export const createCityController = async (req, res) => {
  * @returns status and message
  */
 export const updateCityController = async (req, res) => {
-	const { id, email } = req;
 	const { description, active } = req.body;
 	const { city } = req.params;
-
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await City.update(
 		{ description: description, active: active },

@@ -61,7 +61,7 @@ export const createColorController = async (req, res) => {
 
 		const colorExisting = await ColorVehicle.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
 		});
 		if (colorExisting)
@@ -159,7 +159,7 @@ export const createYearController = async (req, res) => {
 
 		const yearExisting = await YearVehicle.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
 		});
 		if (yearExisting)
@@ -258,7 +258,7 @@ export const createBrandController = async (req, res) => {
 
 		const brandExisting = await BrandVehicle.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
 		});
 		if (brandExisting)
@@ -356,7 +356,7 @@ export const createTypeController = async (req, res) => {
 
 		const typeExisting = await TypeVehicle.findOne({
 			where: {
-				id: attribute,
+				description: description,
 			},
 		});
 		if (typeExisting)
