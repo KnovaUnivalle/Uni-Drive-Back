@@ -8,15 +8,18 @@ import Admin from '../../schemas/admin.schema.js';
  * @returns if is authorized next, else status and message
  */
 const authorizationController = async (req, res, next) => {
-	const { id, email } = req;
+	try {
+		const { id, email } = req;
 
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
+		const existingAdmin = await Admin.findOne({
+			where: { id: id, email: email },
+		});
+		if (!existingAdmin)
+			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
-	next();
+		next();
+	} catch (error) {
+		return res.status(500);
+	}
 };
-
 export default authorizationController;

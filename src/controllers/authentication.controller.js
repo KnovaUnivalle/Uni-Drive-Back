@@ -8,16 +8,16 @@ import { jwtVerify } from 'jose';
  * @returns status and message if is not authorized
  */
 const authenticationController = async (req, res, next) => {
-	const { authorization } = req.headers;
-
-	if (!authorization)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
-
-	const jwt = authorization.split(' ')[0];
-
-	if (!jwt) return res.status(401).send({ errors: ['Usuario no autorizado'] });
-
 	try {
+		const { authorization } = req.headers;
+
+		if (!authorization)
+			return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
+		const jwt = authorization.split(' ')[0];
+
+		if (!jwt)
+			return res.status(401).send({ errors: ['Usuario no autorizado'] });
 		const encoder = new TextEncoder();
 		const { payload } = await jwtVerify(
 			authorization,
@@ -29,7 +29,7 @@ const authenticationController = async (req, res, next) => {
 
 		next();
 	} catch (error) {
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
+		return res.status(500);
 	}
 };
 
