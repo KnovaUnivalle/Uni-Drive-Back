@@ -59,11 +59,11 @@ export const createColorController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
 
-		await ColorVehicle.create({
+		const color = await ColorVehicle.create({
 			description: description,
 			active: active,
 		});
-		return res.status(201).send('Color de vehiculo registrado con éxito');
+		return res.status(201).json(color);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -147,12 +147,12 @@ export const createYearController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
 
-		await YearVehicle.create({
+		const year = await YearVehicle.create({
 			description: description,
 			active: active,
 		});
 
-		return res.status(201).send('Modelo de vehiculo registrado con éxito');
+		return res.status(201).json(year);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -236,11 +236,11 @@ export const createBrandController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
 
-		await BrandVehicle.create({
+		const brand = await BrandVehicle.create({
 			description: description,
 			active: active,
 		});
-		return res.status(201).send('Marca de vehiculo registrada con éxito');
+		return res.status(201).json(brand);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -324,12 +324,12 @@ export const createTypeController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
 
-		await TypeVehicle.create({
+		const type = await TypeVehicle.create({
 			description: description,
 			active: active,
 		});
 
-		return res.status(201).send('Tipo de vehiculo registrado con éxito');
+		return res.status(201).json(type);
 	} catch (error) {
 		return res.status(500);
 	}
