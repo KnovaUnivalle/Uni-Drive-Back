@@ -17,9 +17,11 @@ export const getColorController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Colores no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Colores no encontrados'] });
+		return res.status(500);
 	}
 };
 
@@ -39,9 +41,11 @@ export const getAllColorController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Colores no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Colores no encontrados'] });
+		return res.status(500);
 	}
 };
 
@@ -98,9 +102,11 @@ export const getYearController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Modelos no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Modelos no encontrados'] });
+		return res.status(500);
 	}
 };
 
@@ -120,9 +126,11 @@ export const getAllYearController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Modelos no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Modelos no encontrados'] });
+		return res.status(500);
 	}
 };
 
@@ -179,9 +187,11 @@ export const getBrandController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Marcas no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Marcas no encontradas'] });
+		return res.status(500);
 	}
 };
 
@@ -201,9 +211,11 @@ export const getAllBrandController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Marcas no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Marcas no encontradas'] });
+		return res.status(500);
 	}
 };
 
@@ -260,9 +272,11 @@ export const getTypeController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Tipos no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Tipos no encontrados'] });
+		return res.status(500);
 	}
 };
 
