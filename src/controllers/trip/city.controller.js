@@ -83,17 +83,31 @@ export const createCityController = async (req, res) => {
  * @returns status and message
  */
 export const updateCityController = async (req, res) => {
-	const { description, active } = req.body;
-	const { city } = req.params;
+	try {
+		const { description, active } = req.body;
+		const { city } = req.params;
 
-	await City.update(
-		{ description: description, active: active },
-		{
+		const cityExisting = await City.findOne({
 			where: {
-				id: city,
+				description: description,
 			},
-		}
-	);
+		});
+		if (cityExisting)
+			return res.status(409).send({
+				errors: ['Ya existe una ciudad con esa descripción'],
+			});
 
-	return res.status(201).send('Ciudad actualizada con éxito');
+		await City.update(
+			{ description: description, active: active },
+			{
+				where: {
+					id: city,
+				},
+			}
+		);
+
+		return res.status(201).send('Ciudad actualizada con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
 };
