@@ -23,9 +23,9 @@ import {
 
 const vehicleRouter = Router();
 
-vehicleRouter.get('/color', getColorController);
+vehicleRouter.get('/colors', getColorController);
 vehicleRouter.get(
-	'/allColor',
+	'/color',
 	authenticationController,
 	authorizationController,
 	getAllColorController
@@ -45,9 +45,9 @@ vehicleRouter.put(
 	updateColorController
 );
 
-vehicleRouter.get('/brand', getBrandController);
+vehicleRouter.get('/brands', getBrandController);
 vehicleRouter.get(
-	'/allBrand',
+	'/brand',
 	authenticationController,
 	authorizationController,
 	getAllBrandController
@@ -67,9 +67,9 @@ vehicleRouter.put(
 	updateBrandController
 );
 
-vehicleRouter.get('/year', getYearController);
+vehicleRouter.get('/years', getYearController);
 vehicleRouter.get(
-	'/allYear',
+	'/year',
 	authenticationController,
 	authorizationController,
 	getAllYearController
@@ -89,9 +89,9 @@ vehicleRouter.put(
 	updateYearController
 );
 
-vehicleRouter.get('/type', getTypeController);
+vehicleRouter.get('/types', getTypeController);
 vehicleRouter.get(
-	'/allType',
+	'/type',
 	authenticationController,
 	authorizationController,
 	getAllTypeController
