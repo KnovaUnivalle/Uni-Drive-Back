@@ -13,9 +13,11 @@ export const getCityController = async (req, res) => {
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Ciudades no encontrados'] });
 		res.send(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Ciudades no encontradas'] });
+		return res.status(500);
 	}
 };
 
@@ -27,17 +29,19 @@ export const getCityController = async (req, res) => {
  */
 export const getAllCityController = async (req, res) => {
 	try {
-		const { id, email } = req;
+		const page = req.query.pages || 0;
+		const limit = 20;
+		const skipElements = limit * page;
 
-		const existingAdmin = await Admin.findOne({
-			where: { id: id, email: email },
+		const data = await City.findAll({
+			offset: skipElements,
+			limit: limit,
 		});
-		if (!existingAdmin)
-			return res.status(401).send({ errors: ['Usuario no autorizado'] });
-		const data = await City.findAll();
+		if (data.length === 0)
+			return res.status(404).send({ errors: ['Ciudades no encontrados'] });
 		res.send(200).json(data);
 	} catch (error) {
-		return res.status(404).send({ errors: ['Ciudades no encontradas'] });
+		return res.status(500);
 	}
 };
 
@@ -48,21 +52,28 @@ export const getAllCityController = async (req, res) => {
  * @returns status and message
  */
 export const createCityController = async (req, res) => {
-	const { id, email } = req;
-	const { description, active } = req.body;
+	try {
+		const { description, active } = req.body;
 
-	const existingAdmin = await Admin.findOne({
-		where: { id: id, email: email },
-	});
-	if (!existingAdmin)
-		return res.status(401).send({ errors: ['Usuario no autorizado'] });
+		const cityExisting = await City.findOne({
+			where: {
+				id: attribute,
+			},
+		});
+		if (cityExisting)
+			return res.status(409).send({
+				errors: ['Ya existe una ciudad con esa descripción'],
+			});
 
-	await City.create({
-		description: description,
-		active: active,
-	});
+		const city = await City.create({
+			description: description,
+			active: active,
+		});
 
-	return res.status(201).send('Ciudad registrada con éxito');
+		return res.status(201).json(city);
+	} catch (error) {
+		return res.status(500);
+	}
 };
 
 /**
