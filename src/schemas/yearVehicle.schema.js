@@ -12,6 +12,7 @@ const YearVehicle = sequelize.define(
 		description: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			unique: true,
 		},
 		active: {
 			type: DataTypes.BOOLEAN,

@@ -9,11 +9,12 @@ const City = sequelize.define(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		name: {
+		description: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			unique: true,
 		},
-		description: {
+		active: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 			defaultValue: true,
