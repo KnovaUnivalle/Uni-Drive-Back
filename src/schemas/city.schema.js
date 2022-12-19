@@ -13,7 +13,7 @@ const City = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		active: {
+		description: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 			defaultValue: true,

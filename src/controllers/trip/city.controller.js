@@ -11,7 +11,7 @@ export const getCityController = async (req, res) => {
 	try {
 		const data = await City.findAll({
 			where: { active: true },
-			attributes: ['id', 'name'],
+			attributes: ['id', 'description'],
 		});
 		res.send(200).json(data);
 	} catch (error) {
@@ -58,7 +58,7 @@ export const createCityController = async (req, res) => {
 		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await City.create({
-		name: description,
+		description: description,
 		active: active,
 	});
 
@@ -83,7 +83,7 @@ export const updateCityController = async (req, res) => {
 		return res.status(401).send({ errors: ['Usuario no autorizado'] });
 
 	await City.update(
-		{ name: description, active: active },
+		{ description: description, active: active },
 		{
 			where: {
 				id: city,
