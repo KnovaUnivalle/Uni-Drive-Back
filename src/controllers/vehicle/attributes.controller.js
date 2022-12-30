@@ -41,8 +41,7 @@ export const getAllColorController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
-		if (data.length === 0)
-			return res.status(404).send({ errors: ['Colores no encontrados'] });
+		if (data.length === 0) return res.status(404).json(data);
 		res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -153,8 +152,7 @@ export const getAllYearController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
-		if (data.length === 0)
-			return res.status(404).send({ errors: ['Modelos no encontrados'] });
+		if (data.length === 0) return res.status(404).json(data);
 		res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -266,8 +264,7 @@ export const getAllBrandController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
-		if (data.length === 0)
-			return res.status(404).send({ errors: ['Marcas no encontrados'] });
+		if (data.length === 0) return res.status(404).json(data);
 		res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -378,8 +375,7 @@ export const getAllTypeController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
-		if (data.length === 0)
-			return res.status(404).send({ errors: ['Tipos no encontrados'] });
+		if (data.length === 0) return res.status(404).json(data);
 		res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
