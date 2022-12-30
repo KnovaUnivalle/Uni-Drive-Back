@@ -20,9 +20,9 @@ tripRouter.post(
 	createTripController
 );
 
-tripRouter.get('/city', getCityController);
+tripRouter.get('/cities', getCityController);
 tripRouter.get(
-	'/allCity',
+	'/city',
 	authenticationController,
 	authorizationController,
 	getAllCityController
