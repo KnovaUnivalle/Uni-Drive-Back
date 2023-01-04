@@ -10,6 +10,7 @@ import {
 	getCityController,
 	updateCityController,
 } from '../controllers/trip/city.controller.js';
+import { searchTripRiderController } from '../controllers/trip/search.controller.js';
 
 const tripRouter = Router();
 
@@ -41,4 +42,12 @@ tripRouter.put(
 	attributeDTO,
 	updateCityController
 );
+
+tripRouter.get(
+	'/search',
+	authenticationController,
+	authorizationController,
+	searchTripRiderController
+);
+
 export default tripRouter;
