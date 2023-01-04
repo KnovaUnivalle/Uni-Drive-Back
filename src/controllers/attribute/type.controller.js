@@ -1,20 +1,19 @@
-import City from '../../schemas/city.schema.js';
-import Admin from '../../schemas/admin.schema.js';
+import TypeVehicle from '../../schemas/typeVehicle.schema.js';
 
 /**
- * Send cities actives from database
+ * Send types actives from database
  * @param {Object} req
  * @param {Object} res
  * @returns status and message
  */
-export const getCityController = async (req, res) => {
+export const getTypeController = async (req, res) => {
 	try {
-		const data = await City.findAll({
+		const data = await TypeVehicle.findAll({
 			where: { active: true },
 			attributes: ['id', 'description'],
 		});
 		if (data.length === 0)
-			return res.status(404).send({ errors: ['Ciudades no encontrados'] });
+			return res.status(404).send({ errors: ['Tipos no encontrados'] });
 		res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -22,18 +21,18 @@ export const getCityController = async (req, res) => {
 };
 
 /**
- * Send all cities from database
+ * Send all types from database
  * @param {Object} req
  * @param {Object} res
  * @returns status and message
  */
-export const getAllCityController = async (req, res) => {
+export const getAllTypeController = async (req, res) => {
 	try {
 		const page = req.query.pages || 0;
 		const limit = 20;
 		const skipElements = limit * page;
 
-		const data = await City.findAll({
+		const data = await TypeVehicle.findAll({
 			offset: skipElements,
 			limit: limit,
 		});
@@ -45,67 +44,67 @@ export const getAllCityController = async (req, res) => {
 };
 
 /**
- * Create a city in database
+ * Create a type in database
  * @param {Object} req
  * @param {Object} res
  * @returns status and message
  */
-export const createCityController = async (req, res) => {
+export const createTypeController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
 
-		const cityExisting = await City.findOne({
+		const typeExisting = await TypeVehicle.findOne({
 			where: {
 				description: description,
 			},
 		});
-		if (cityExisting)
+		if (typeExisting)
 			return res.status(409).send({
-				errors: ['Ya existe una ciudad con esa descripción'],
+				errors: ['Ya existe una tipo de vehiculos con esa descripción'],
 			});
 
-		const city = await City.create({
+		const type = await TypeVehicle.create({
 			description: description,
 			active: active,
 		});
 
-		return res.status(201).json(city);
+		return res.status(201).json(type);
 	} catch (error) {
 		return res.status(500);
 	}
 };
 
 /**
- * Update a city in database
+ * Create a type in database
  * @param {Object} req
  * @param {Object} res
  * @returns status and message
  */
-export const updateCityController = async (req, res) => {
+export const updateTypeController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
-		const { city } = req.params;
+		const { attribute } = req.params;
 
-		const cityExisting = await City.findOne({
+		const typeExisting = await TypeVehicle.findOne({
 			where: {
 				description: description,
 			},
 		});
-		if (cityExisting)
+		if (typeExisting)
 			return res.status(409).send({
-				errors: ['Ya existe una ciudad con esa descripción'],
+				errors: ['Ya existe una tipo de vehiculos con esa descripción'],
 			});
 
-		await City.update(
+		await TypeVehicle.update(
 			{ description: description, active: active },
 			{
 				where: {
-					id: city,
+					id: attribute,
 				},
 			}
 		);
 
-		return res.status(201).send('Ciudad actualizada con éxito');
+		return res.status(201).send('Tipo de vehiculo actualizado con éxito');
 	} catch (error) {
 		return res.status(500);
 	}
