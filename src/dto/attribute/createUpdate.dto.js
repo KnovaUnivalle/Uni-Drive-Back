@@ -24,7 +24,7 @@ const ajv = new Ajv({ allErrors: true })
 addFormats(ajv);
 addErrors(ajv);
 
-const validateSchema = ajv.compile(attributeDTOSchema);
+const validateSchema = ajv.compile(createUpdateDTOSchema);
 
 /**
  * Check the body of the request
