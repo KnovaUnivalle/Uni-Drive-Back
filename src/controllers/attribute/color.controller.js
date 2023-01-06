@@ -91,7 +91,7 @@ export const updateColorController = async (req, res) => {
 				description: description,
 			},
 		});
-		if (colorExisting)
+		if (colorExisting && attribute != colorExisting.id)
 			return res.status(409).send({
 				errors: ['Ya existe un color con esa descripción'],
 			});
