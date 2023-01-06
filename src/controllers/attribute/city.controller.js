@@ -90,7 +90,7 @@ export const updateCityController = async (req, res) => {
 				description: description,
 			},
 		});
-		if (cityExisting)
+		if (cityExisting && attribute != cityExisting.id)
 			return res.status(409).send({
 				errors: ['Ya existe una ciudad con esa descripción'],
 			});

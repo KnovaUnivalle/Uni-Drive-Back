@@ -90,7 +90,7 @@ export const updateYearController = async (req, res) => {
 				description: description,
 			},
 		});
-		if (yearExisting)
+		if (yearExisting && attribute != yearExisting.id)
 			return res.status(409).send({
 				errors: ['Ya existe un modelo con esa descripción'],
 			});

@@ -89,7 +89,7 @@ export const updateBrandController = async (req, res) => {
 				description: description,
 			},
 		});
-		if (brandExisting)
+		if (brandExisting && attribute != brandExisting.id)
 			return res.status(409).send({
 				errors: ['Ya existe una marca con esa descripción'],
 			});

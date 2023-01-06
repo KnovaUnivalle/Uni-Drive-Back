@@ -90,7 +90,7 @@ export const updateTypeController = async (req, res) => {
 				description: description,
 			},
 		});
-		if (typeExisting)
+		if (typeExisting && attribute != typeExisting.id)
 			return res.status(409).send({
 				errors: ['Ya existe una tipo de vehiculos con esa descripción'],
 			});
