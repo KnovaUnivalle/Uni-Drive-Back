@@ -5,6 +5,7 @@ import createUpdateDTO from '../dto/attribute/createUpdate.dto.js';
 import {
 	createCityController,
 	getAllCityController,
+	getCityController,
 	updateCityController,
 } from '../controllers/attribute/city.controller.js';
 import {
