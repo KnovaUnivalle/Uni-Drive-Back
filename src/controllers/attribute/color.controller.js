@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import ColorVehicle from '../../schemas/colorVehicle.schema.js';
 
 // COLOR
@@ -16,7 +17,7 @@ export const getColorController = async (req, res) => {
 		});
 		if (data.length === 0)
 			return res.status(404).send({ errors: ['Colores no encontrados'] });
-		res.status(200).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -39,7 +40,7 @@ export const getAllColorController = async (req, res) => {
 			limit: limit,
 		});
 		if (data.length === 0) return res.status(404).json(data);
-		res.status(200).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -106,6 +107,36 @@ export const updateColorController = async (req, res) => {
 		);
 
 		return res.status(201).send('Color de vehiculo actualizado con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
+};
+
+export const searchColorController = async (req, res, next) => {
+	try {
+		const { id, description } = req.query;
+
+		console.log(id);
+		if (!id && !description) {
+			next();
+		}
+
+		if (description) {
+			const data = await ColorVehicle.findAll({
+				where: {
+					description: { [Op.substring]: description },
+				},
+			});
+			if (data.length === 0) return res.status(404).json(data);
+			return res.status(200).json(data);
+		}
+		const data = await ColorVehicle.findAll({
+			where: {
+				id: id,
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
