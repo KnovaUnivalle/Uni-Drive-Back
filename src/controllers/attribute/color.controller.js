@@ -1,8 +1,6 @@
 import { Op } from 'sequelize';
 import ColorVehicle from '../../schemas/colorVehicle.schema.js';
 
-// COLOR
-
 /**
  * Send colors actives from database
  * @param {Object} req
@@ -50,7 +48,7 @@ export const getAllColorController = async (req, res) => {
  * Create a color in database
  * @param {Object} req
  * @param {Object} res
- * @returns status and message
+ * @returns status and data (list)
  */
 export const createColorController = async (req, res) => {
 	try {
@@ -112,6 +110,13 @@ export const updateColorController = async (req, res) => {
 	}
 };
 
+/**
+ * Return cities by query params
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
 export const searchColorController = async (req, res, next) => {
 	try {
 		const { id, description } = req.query;

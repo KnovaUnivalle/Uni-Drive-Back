@@ -14,7 +14,7 @@ export const getBrandController = async (req, res) => {
 		});
 		if (data.length === 0)
 			return res.status(404).send({ errors: ['Marcas no encontrados'] });
-		res.status(200).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -24,7 +24,7 @@ export const getBrandController = async (req, res) => {
  * Send all brands from database
  * @param {Object} req
  * @param {Object} res
- * @returns status and message
+ * @returns status and data (list)
  */
 export const getAllBrandController = async (req, res) => {
 	try {
@@ -37,7 +37,7 @@ export const getAllBrandController = async (req, res) => {
 			limit: limit,
 		});
 		if (data.length === 0) return res.status(404).json(data);
-		res.status(200).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -104,6 +104,43 @@ export const updateBrandController = async (req, res) => {
 		);
 
 		return res.status(201).send('Marca de vehiculo actualizada con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
+};
+
+/**
+ * Return search brands by query params
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+export const searchBrandController = async (req, res, next) => {
+	try {
+		const { id, description } = req.query;
+
+		console.log(id);
+		if (!id && !description) {
+			next();
+		}
+
+		if (description) {
+			const data = await BrandVehicle.findAll({
+				where: {
+					description: { [Op.substring]: description },
+				},
+			});
+			if (data.length === 0) return res.status(404).json(data);
+			return res.status(200).json(data);
+		}
+		const data = await BrandVehicle.findAll({
+			where: {
+				id: id,
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
