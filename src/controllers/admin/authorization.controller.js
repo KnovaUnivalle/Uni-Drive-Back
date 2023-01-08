@@ -7,7 +7,7 @@ import Admin from '../../schemas/admin.schema.js';
  * @param {Function} next
  * @returns if is authorized next, else status and message
  */
-const authorizationController = async (req, res, next) => {
+const authorizationAdminController = async (req, res, next) => {
 	try {
 		const { id, email } = req;
 
@@ -22,4 +22,4 @@ const authorizationController = async (req, res, next) => {
 		return res.status(500);
 	}
 };
-export default authorizationController;
+export default authorizationAdminController;
