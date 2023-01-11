@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import YearVehicle from '../../schemas/yearVehicle.schema.js';
 
 /**
@@ -121,7 +122,6 @@ export const searchYearController = async (req, res, next) => {
 	try {
 		const { id, description } = req.query;
 
-		console.log(id);
 		if (!id && !description) {
 			next();
 		}

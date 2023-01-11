@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import TypeVehicle from '../../schemas/typeVehicle.schema.js';
 
 /**
@@ -121,7 +122,6 @@ export const searchTypeController = async (req, res, next) => {
 	try {
 		const { id, description } = req.query;
 
-		console.log(id);
 		if (!id && !description) {
 			next();
 		}

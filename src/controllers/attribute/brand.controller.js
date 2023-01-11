@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import BrandVehicle from '../../schemas/brandVehicle.schema.js';
 
 /**
@@ -120,7 +121,6 @@ export const searchBrandController = async (req, res, next) => {
 	try {
 		const { id, description } = req.query;
 
-		console.log(id);
 		if (!id && !description) {
 			next();
 		}
