@@ -5,8 +5,9 @@ export const searchTripRiderController = async (req, res) => {
 	try {
 		const { day, date, toUniversity } = req.query;
 
-		const queryDay = day || '1';
-		const queryDate = date || '';
+		const basicDate = new Date();
+		const queryDay = day || basicDate.getUTCDate();
+		const queryDate = date || basicDate.toISOString();
 		const queryToUniversity = toUniversity || 0;
 
 		if (queryToUniversity === 0) {
