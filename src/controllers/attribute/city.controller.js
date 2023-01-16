@@ -1,5 +1,5 @@
+import { Op } from 'sequelize';
 import City from '../../schemas/city.schema.js';
-import Admin from '../../schemas/admin.schema.js';
 
 /**
  * Send cities actives from database
@@ -15,7 +15,7 @@ export const getCityController = async (req, res) => {
 		});
 		if (data.length === 0)
 			return res.status(404).send({ errors: ['Ciudades no encontrados'] });
-		res.send(200).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -25,7 +25,7 @@ export const getCityController = async (req, res) => {
  * Send all cities from database
  * @param {Object} req
  * @param {Object} res
- * @returns status and message
+ * @returns status and data (list)
  */
 export const getAllCityController = async (req, res) => {
 	try {
@@ -37,9 +37,8 @@ export const getAllCityController = async (req, res) => {
 			offset: skipElements,
 			limit: limit,
 		});
-		if (data.length === 0)
-			return res.status(404).send({ errors: ['Ciudades no encontrados'] });
-		res.send(200).json(data);
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -92,7 +91,7 @@ export const updateCityController = async (req, res) => {
 				description: description,
 			},
 		});
-		if (cityExisting)
+		if (cityExisting && attribute != cityExisting.id)
 			return res.status(409).send({
 				errors: ['Ya existe una ciudad con esa descripción'],
 			});
@@ -107,6 +106,42 @@ export const updateCityController = async (req, res) => {
 		);
 
 		return res.status(201).send('Ciudad actualizada con éxito');
+	} catch (error) {
+		return res.status(500);
+	}
+};
+
+/**
+ * Return colors by query params
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+export const searchCityController = async (req, res, next) => {
+	try {
+		const { id, description } = req.query;
+
+		if (!id && !description) {
+			next();
+		}
+
+		if (description) {
+			const data = await City.findAll({
+				where: {
+					description: { [Op.substring]: description },
+				},
+			});
+			if (data.length === 0) return res.status(404).json(data);
+			return res.status(200).json(data);
+		}
+		const data = await City.findAll({
+			where: {
+				id: id,
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}

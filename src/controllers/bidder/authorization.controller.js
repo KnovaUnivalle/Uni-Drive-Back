@@ -7,7 +7,7 @@ import Bidder from '../../schemas/bidder.schema.js';
  * @param {Function} next
  * @returns if is authorized next, else status and message
  */
-const authorizationController = async (req, res, next) => {
+const authorizationBidderController = async (req, res, next) => {
 	try {
 		const { id, email } = req;
 
@@ -22,4 +22,4 @@ const authorizationController = async (req, res, next) => {
 	}
 };
 
-export default authorizationController;
+export default authorizationBidderController;

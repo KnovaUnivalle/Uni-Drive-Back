@@ -7,7 +7,7 @@ import Rider from '../../schemas/rider.schema.js';
  * @param {Function} next
  * @returns if is authorized next, else status and message
  */
-const authorizationController = async (req, res, next) => {
+const authorizationRiderController = async (req, res, next) => {
 	try {
 		const { id, email } = req;
 
@@ -22,4 +22,4 @@ const authorizationController = async (req, res, next) => {
 		return res.status(500);
 	}
 };
-export default authorizationController;
+export default authorizationRiderController;
