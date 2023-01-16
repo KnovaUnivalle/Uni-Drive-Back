@@ -15,6 +15,7 @@ export const searchTripRiderController = async (req, res) => {
 			});
 			if (data.length === 0)
 				return res.status(404).send({ errors: ['Búsqueda inválida'] });
+			return res.status(200).json(data);
 		}
 
 		const data = await Trip.findAll({
@@ -26,6 +27,7 @@ export const searchTripRiderController = async (req, res) => {
 		});
 		if (data.length === 0)
 			return res.status(404).send({ errors: ['Búsqueda inválida'] });
+		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
 	}
