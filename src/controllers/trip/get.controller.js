@@ -9,11 +9,17 @@ import Vehicle from '../../schemas/vehicle.schema.js';
  */
 export const getTrips = async (req, res) => {
 	const { id } = req;
+
 	const vehicles = await Vehicle.findAll({
 		where: { BidderId: id },
 		attributes: ['id'],
 	});
-	const ids = vehicles.reduce((prev, cur) => prev.push(cur.id), []);
+
+	const ids = vehicles.reduce((prev, cur) => {
+		prev.push(cur.id);
+		return prev;
+	}, []);
+
 	const data = await Trip.findAll({
 		where: { active: true, VehicleId: ids },
 		attributes: [
