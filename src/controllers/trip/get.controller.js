@@ -1,5 +1,6 @@
 import Trip from '../../schemas/trip.schema.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
+import { arrayObjectsToArrayIds } from '../../utils/arrayMethods.js';
 
 /**
  * Send trip { id, date, day, rate, description, toUniversity, meetPoint, active} actives from database
@@ -15,10 +16,7 @@ export const getTrips = async (req, res) => {
 		attributes: ['id'],
 	});
 
-	const ids = vehicles.reduce((prev, cur) => {
-		prev.push(cur.id);
-		return prev;
-	}, []);
+	const ids = arrayObjectsToArrayIds(vehicles);
 
 	const data = await Trip.findAll({
 		where: { active: true, VehicleId: ids },
