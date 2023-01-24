@@ -7,7 +7,7 @@ import ColorVehicle from '../../schemas/colorVehicle.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-export const getColorController = async (req, res) => {
+export const getActiveColorsController = async (req, res) => {
 	try {
 		const data = await ColorVehicle.findAll({
 			where: { active: true },
@@ -27,7 +27,7 @@ export const getColorController = async (req, res) => {
  * @param {Object} res
  * @returns status and message
  */
-export const getAllColorController = async (req, res) => {
+export const getAllColorsController = async (req, res) => {
 	try {
 		const page = req.query.pages || 0;
 		const limit = 20;
@@ -68,7 +68,7 @@ export const createColorController = async (req, res) => {
 			description: description,
 			active: active,
 		});
-		return res.status(201).json(color);
+		return res.status(201).json(color.id);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -111,32 +111,76 @@ export const updateColorController = async (req, res) => {
 };
 
 /**
- * Return cities by query params
+ * Return colors by description
  * @param {Object} req
  * @param {Object} res
  * @param {Object} next
  * @returns status and data (list)
  */
-export const searchColorController = async (req, res, next) => {
+export const searchColorsByDescriptionController = async (req, res, next) => {
 	try {
-		const { id, description } = req.query;
-
-		if (!id && !description) {
-			next();
+		const { description } = req.query;
+		if (!description) {
+			console.log(!description);
+			return next();
 		}
+		console.log('next2');
+		const data = await ColorVehicle.findAll({
+			where: {
+				description: { [Op.substring]: description },
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
 
-		if (description) {
-			const data = await ColorVehicle.findAll({
-				where: {
-					description: { [Op.substring]: description },
-				},
-			});
-			if (data.length === 0) return res.status(404).json(data);
-			return res.status(200).json(data);
+/**
+ * Return colors by id
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchColorsByIdController = async (req, res, next) => {
+	try {
+		const { id } = req.query;
+		if (!id) {
+			return next();
 		}
 		const data = await ColorVehicle.findAll({
 			where: {
 				id: id,
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
+
+/**
+ * Return colors by active
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchColorsByActiveController = async (req, res, next) => {
+	try {
+		const { active } = req.query;
+
+		if (!active) {
+			return next();
+		}
+		const data = await ColorVehicle.findAll({
+			where: {
+				active: active,
 			},
 		});
 		if (data.length === 0) return res.status(404).json(data);
