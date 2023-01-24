@@ -4,49 +4,61 @@ import authorizationAdminController from '../controllers/admin/authorization.con
 import createUpdateDTO from '../dto/attribute/createUpdate.dto.js';
 import {
 	createCityController,
-	getAllCityController,
-	getCityController,
-	searchCityController,
+	getAllCitiesController,
+	getActiveCities,
 	updateCityController,
+	searchCitiesByIdController,
+	searchCitiesByDescriptionController,
+	searchCitiesByActiveController,
 } from '../controllers/attribute/city.controller.js';
 import {
 	createColorController,
-	getAllColorController,
-	getColorController,
-	searchColorController,
+	getAllColorsController,
+	getActiveColorsController,
 	updateColorController,
+	searchColorsByIdController,
+	searchColorsByDescriptionController,
+	searchColorsByActiveController,
 } from '../controllers/attribute/color.controller.js';
 import {
 	createBrandController,
-	getAllBrandController,
-	getBrandController,
-	searchBrandController,
+	getAllBrandsController,
+	getActiveBrandsController,
 	updateBrandController,
+	searchBrandsByIdController,
+	searchBrandsByDescriptionController,
+	searchBrandsByActiveController,
 } from '../controllers/attribute/brand.controller.js';
 import {
 	createYearController,
-	getAllYearController,
-	getYearController,
-	searchYearController,
+	getAllYearsController,
+	getActiveYearsController,
 	updateYearController,
+	searchYearsByIdController,
+	searchYearsByDescriptionController,
+	searchYearsByActiveController,
 } from '../controllers/attribute/year.controller.js';
 import {
 	createTypeController,
-	getAllTypeController,
-	getTypeController,
-	searchTypeController,
+	getAllTypesController,
+	getActiveTypesController,
 	updateTypeController,
+	searchTypesByDescriptionController,
+	searchTypesByIdController,
+	searchTypesByActiveController,
 } from '../controllers/attribute/type.controller.js';
 
 const attributeRouter = Router();
 
-attributeRouter.get('/cities', getCityController);
+attributeRouter.get('/cities', getActiveCities);
 attributeRouter.get(
 	'/city',
 	authenticationController,
 	authorizationAdminController,
-	searchCityController,
-	getAllCityController
+	searchCitiesByIdController,
+	searchCitiesByDescriptionController,
+	searchCitiesByActiveController,
+	getAllCitiesController
 );
 attributeRouter.post(
 	'/city',
@@ -56,20 +68,22 @@ attributeRouter.post(
 	createCityController
 );
 attributeRouter.put(
-	'/city/:city',
+	'/city/:attribute',
 	authenticationController,
 	authorizationAdminController,
 	createUpdateDTO,
 	updateCityController
 );
 
-attributeRouter.get('/colors', getColorController);
+attributeRouter.get('/colors', getActiveColorsController);
 attributeRouter.get(
 	'/color',
 	authenticationController,
 	authorizationAdminController,
-	searchColorController,
-	getAllColorController
+	searchColorsByIdController,
+	searchColorsByDescriptionController,
+	searchColorsByActiveController,
+	getAllColorsController
 );
 attributeRouter.post(
 	'/color',
@@ -86,13 +100,15 @@ attributeRouter.put(
 	updateColorController
 );
 
-attributeRouter.get('/brands', getBrandController);
+attributeRouter.get('/brands', getActiveBrandsController);
 attributeRouter.get(
 	'/brand',
 	authenticationController,
 	authorizationAdminController,
-	searchBrandController,
-	getAllBrandController
+	searchBrandsByIdController,
+	searchBrandsByDescriptionController,
+	searchBrandsByActiveController,
+	getAllBrandsController
 );
 attributeRouter.post(
 	'/brand',
@@ -109,13 +125,15 @@ attributeRouter.put(
 	updateBrandController
 );
 
-attributeRouter.get('/years', getYearController);
+attributeRouter.get('/years', getActiveYearsController);
 attributeRouter.get(
 	'/year',
 	authenticationController,
 	authorizationAdminController,
-	searchYearController,
-	getAllYearController
+	searchTypesByIdController,
+	searchTypesByDescriptionController,
+	searchTypesByActiveController,
+	getAllYearsController
 );
 attributeRouter.post(
 	'/year',
@@ -132,13 +150,15 @@ attributeRouter.put(
 	updateYearController
 );
 
-attributeRouter.get('/types', getTypeController);
+attributeRouter.get('/types', getActiveTypesController);
 attributeRouter.get(
 	'/type',
 	authenticationController,
 	authorizationAdminController,
-	searchTypeController,
-	getAllTypeController
+	searchYearsByIdController,
+	searchYearsByDescriptionController,
+	searchYearsByActiveController,
+	getAllTypesController
 );
 attributeRouter.post(
 	'/type',
