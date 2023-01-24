@@ -5,7 +5,7 @@ import bidderCreateDTO from '../dto/bidder/create.dto.js';
 import loginDTO from '../dto/login.dto.js';
 import authenticationController from '../controllers/authentication.controller.js';
 import authorizationBidderController from '../controllers/bidder/authorization.controller.js';
-import { getActivesVehiclesBidder } from '../controllers/vehicle/get.controller.js';
+import { getActivesVehiclesBidderController } from '../controllers/vehicle/get.controller.js';
 import bidderExistController from '../controllers/bidder/exist.controller.js';
 import vehicleExistController from '../controllers/vehicle/exist.controller.js';
 import vehicleCreateController from '../controllers/vehicle/create.controller.js';
@@ -27,7 +27,7 @@ bidderRouter.get(
 	'/vehicles',
 	authenticationController,
 	authorizationBidderController,
-	getActivesVehiclesBidder
+	getActivesVehiclesBidderController
 );
 bidderRouter.get(
 	'/trips',
