@@ -32,7 +32,7 @@ export const getActivesVehiclesBidder = async (req, res) => {
  */
 export const getVehicles = async (req, res) => {
 	const data = await Vehicle.findAll({
-		attributes: ['id', 'plate', 'available'],
+		attributes: ['id', 'plate', 'active'],
 		include: [{ model: Bidder, attributes: ['id', 'firstName'] }],
 	});
 
