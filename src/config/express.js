@@ -8,6 +8,7 @@ import riderRouter from '../routes/rider.routes.js';
 import vehicleRouter from '../routes/vehicle.routes.js';
 import tripRouter from '../routes/trip.routes.js';
 import attributeRouter from '../routes/attribute.routes.js';
+import reportRouter from '../routes/report.routes.js';
 
 const app = express();
 
@@ -38,5 +39,6 @@ app.use('/rider', riderRouter);
 app.use('/vehicle', vehicleRouter);
 app.use('/trip', tripRouter);
 app.use('/attribute', attributeRouter);
+app.use('/report', reportRouter);
 
 export default app;
