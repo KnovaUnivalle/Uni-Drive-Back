@@ -7,6 +7,6 @@ const riderRouter = Router();
 
 riderRouter.use(authenticationController, authorizationRiderController);
 
-tripRouter.get('/search', searchTripRiderController);
+tripRouter.get('/trips/search', searchTripRiderController);
 
 export default riderRouter;
