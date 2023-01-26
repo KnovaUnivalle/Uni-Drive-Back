@@ -10,6 +10,9 @@ import { arrayObjectsToArrayIds } from '../../utils/arrayMethods.js';
  */
 export const getTrips = async (req, res) => {
 	const { id } = req;
+	const { active } = req.query;
+
+	const queryActive = active || true;
 
 	const vehicles = await Vehicle.findAll({
 		where: { BidderId: id },
@@ -19,7 +22,7 @@ export const getTrips = async (req, res) => {
 	const ids = arrayObjectsToArrayIds(vehicles);
 
 	const data = await Trip.findAll({
-		where: { active: true, VehicleId: ids },
+		where: { active: queryActive, VehicleId: ids },
 		attributes: [
 			'id',
 			'date',
