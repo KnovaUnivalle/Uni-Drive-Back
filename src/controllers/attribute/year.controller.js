@@ -7,7 +7,7 @@ import YearVehicle from '../../schemas/yearVehicle.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-export const getYearController = async (req, res) => {
+export const getActiveYearsController = async (req, res) => {
 	try {
 		const data = await YearVehicle.findAll({
 			where: { active: true },
@@ -27,7 +27,7 @@ export const getYearController = async (req, res) => {
  * @param {Object} res
  * @returns status and data (list)
  */
-export const getAllYearController = async (req, res) => {
+export const getAllYearsController = async (req, res) => {
 	try {
 		const page = req.query.pages || 0;
 		const limit = 20;
@@ -69,7 +69,7 @@ export const createYearController = async (req, res) => {
 			active: active,
 		});
 
-		return res.status(201).json(year);
+		return res.status(201).json(year.id);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -112,32 +112,77 @@ export const updateYearController = async (req, res) => {
 };
 
 /**
- * Return years by query params
+/**
+ * Return years by description
  * @param {Object} req
  * @param {Object} res
  * @param {Object} next
  * @returns status and data (list)
  */
-export const searchYearController = async (req, res, next) => {
+export const searchYearsByDescriptionController = async (req, res, next) => {
 	try {
-		const { id, description } = req.query;
+		const { description } = req.query;
 
-		if (!id && !description) {
-			next();
+		if (!description) {
+			return next();
 		}
+		const data = await YearVehicle.findAll({
+			where: {
+				description: { [Op.substring]: description },
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
 
-		if (description) {
-			const data = await YearVehicle.findAll({
-				where: {
-					description: { [Op.substring]: description },
-				},
-			});
-			if (data.length === 0) return res.status(404).json(data);
-			return res.status(200).json(data);
+/**
+ * Return years by id
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchYearsByIdController = async (req, res, next) => {
+	try {
+		const { id } = req.query;
+
+		if (!id) {
+			return next();
 		}
 		const data = await YearVehicle.findAll({
 			where: {
 				id: id,
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
+
+/**
+ * Return years by active
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchYearsByActiveController = async (req, res, next) => {
+	try {
+		const { active } = req.query;
+
+		if (!active) {
+			return next();
+		}
+		const data = await YearVehicle.findAll({
+			where: {
+				active: active,
 			},
 		});
 		if (data.length === 0) return res.status(404).json(data);

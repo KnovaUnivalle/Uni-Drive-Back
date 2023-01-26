@@ -7,7 +7,7 @@ import BrandVehicle from '../../schemas/brandVehicle.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-export const getBrandController = async (req, res) => {
+export const getActiveBrandsController = async (req, res) => {
 	try {
 		const data = await BrandVehicle.findAll({
 			where: { active: true },
@@ -27,7 +27,7 @@ export const getBrandController = async (req, res) => {
  * @param {Object} res
  * @returns status and data (list)
  */
-export const getAllBrandController = async (req, res) => {
+export const getAllBrandsController = async (req, res) => {
 	try {
 		const page = req.query.pages || 0;
 		const limit = 20;
@@ -68,7 +68,7 @@ export const createBrandController = async (req, res) => {
 			description: description,
 			active: active,
 		});
-		return res.status(201).json(brand);
+		return res.status(201).json(brand.id);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -111,32 +111,76 @@ export const updateBrandController = async (req, res) => {
 };
 
 /**
- * Return search brands by query params
+ * Return brands by description
  * @param {Object} req
  * @param {Object} res
  * @param {Object} next
  * @returns status and data (list)
  */
-export const searchBrandController = async (req, res, next) => {
+export const searchBrandsByDescriptionController = async (req, res, next) => {
 	try {
-		const { id, description } = req.query;
+		const { description } = req.query;
 
-		if (!id && !description) {
-			next();
+		if (!description) {
+			return next();
 		}
+		const data = await BrandVehicle.findAll({
+			where: {
+				description: { [Op.substring]: description },
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
 
-		if (description) {
-			const data = await BrandVehicle.findAll({
-				where: {
-					description: { [Op.substring]: description },
-				},
-			});
-			if (data.length === 0) return res.status(404).json(data);
-			return res.status(200).json(data);
+/**
+ * Return brands by id
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchBrandsByIdController = async (req, res, next) => {
+	try {
+		const { id } = req.query;
+
+		if (!id) {
+			return next();
 		}
 		const data = await BrandVehicle.findAll({
 			where: {
 				id: id,
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
+
+/**
+ * Return brands by active
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchBrandsByActiveController = async (req, res, next) => {
+	try {
+		const { active } = req.query;
+
+		if (!active) {
+			return next();
+		}
+		const data = await BrandVehicle.findAll({
+			where: {
+				active: active,
 			},
 		});
 		if (data.length === 0) return res.status(404).json(data);

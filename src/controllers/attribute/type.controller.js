@@ -7,7 +7,7 @@ import TypeVehicle from '../../schemas/typeVehicle.schema.js';
  * @param {Object} res
  * @returns status and message
  */
-export const getTypeController = async (req, res) => {
+export const getActiveTypesController = async (req, res) => {
 	try {
 		const data = await TypeVehicle.findAll({
 			where: { active: true },
@@ -27,7 +27,7 @@ export const getTypeController = async (req, res) => {
  * @param {Object} res
  * @returns status and data (list)
  */
-export const getAllTypeController = async (req, res) => {
+export const getAllTypesController = async (req, res) => {
 	try {
 		const page = req.query.pages || 0;
 		const limit = 20;
@@ -69,7 +69,7 @@ export const createTypeController = async (req, res) => {
 			active: active,
 		});
 
-		return res.status(201).json(type);
+		return res.status(201).json(type.id);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -112,32 +112,77 @@ export const updateTypeController = async (req, res) => {
 };
 
 /**
- * Return types by query params
+/**
+ * Return types by description
  * @param {Object} req
  * @param {Object} res
  * @param {Object} next
  * @returns status and data (list)
  */
-export const searchTypeController = async (req, res, next) => {
+export const searchTypesByDescriptionController = async (req, res, next) => {
 	try {
-		const { id, description } = req.query;
+		const { description } = req.query;
 
-		if (!id && !description) {
-			next();
+		if (!description) {
+			return next();
 		}
+		const data = await TypeVehicle.findAll({
+			where: {
+				description: { [Op.substring]: description },
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
 
-		if (description) {
-			const data = await TypeVehicle.findAll({
-				where: {
-					description: { [Op.substring]: description },
-				},
-			});
-			if (data.length === 0) return res.status(404).json(data);
-			return res.status(200).json(data);
+/**
+ * Return types by id
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchTypesByIdController = async (req, res, next) => {
+	try {
+		const { id } = req.query;
+
+		if (!id) {
+			return next();
 		}
 		const data = await TypeVehicle.findAll({
 			where: {
 				id: id,
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
+
+/**
+ * Return types by active
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchTypesByActiveController = async (req, res, next) => {
+	try {
+		const { active } = req.query;
+
+		if (!active) {
+			return next();
+		}
+		const data = await TypeVehicle.findAll({
+			where: {
+				active: active,
 			},
 		});
 		if (data.length === 0) return res.status(404).json(data);

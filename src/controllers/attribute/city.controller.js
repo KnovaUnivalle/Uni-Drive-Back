@@ -5,9 +5,9 @@ import City from '../../schemas/city.schema.js';
  * Send cities actives from database
  * @param {Object} req
  * @param {Object} res
- * @returns status and message
+ * @returns status and message/data
  */
-export const getCityController = async (req, res) => {
+export const getActiveCitiesController = async (req, res) => {
 	try {
 		const data = await City.findAll({
 			where: { active: true },
@@ -25,9 +25,9 @@ export const getCityController = async (req, res) => {
  * Send all cities from database
  * @param {Object} req
  * @param {Object} res
- * @returns status and data (list)
+ * @returns status and data
  */
-export const getAllCityController = async (req, res) => {
+export const getAllCitiesController = async (req, res) => {
 	try {
 		const page = req.query.pages || 0;
 		const limit = 20;
@@ -69,7 +69,7 @@ export const createCityController = async (req, res) => {
 			active: active,
 		});
 
-		return res.status(201).json(city);
+		return res.status(201).json(city.id);
 	} catch (error) {
 		return res.status(500);
 	}
@@ -84,7 +84,7 @@ export const createCityController = async (req, res) => {
 export const updateCityController = async (req, res) => {
 	try {
 		const { description, active } = req.body;
-		const { city } = req.params;
+		const { attribute } = req.params;
 
 		const cityExisting = await City.findOne({
 			where: {
@@ -100,7 +100,7 @@ export const updateCityController = async (req, res) => {
 			{ description: description, active: active },
 			{
 				where: {
-					id: city,
+					id: attribute,
 				},
 			}
 		);
@@ -112,32 +112,76 @@ export const updateCityController = async (req, res) => {
 };
 
 /**
- * Return colors by query params
+ * Return cities by description
  * @param {Object} req
  * @param {Object} res
  * @param {Object} next
  * @returns status and data (list)
  */
-export const searchCityController = async (req, res, next) => {
+export const searchCitiesByDescriptionController = async (req, res, next) => {
 	try {
-		const { id, description } = req.query;
+		const { description } = req.query;
 
-		if (!id && !description) {
-			next();
+		if (!description) {
+			return next();
 		}
+		const data = await City.findAll({
+			where: {
+				description: { [Op.substring]: description },
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
 
-		if (description) {
-			const data = await City.findAll({
-				where: {
-					description: { [Op.substring]: description },
-				},
-			});
-			if (data.length === 0) return res.status(404).json(data);
-			return res.status(200).json(data);
+/**
+ * Return cities by id
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchCitiesByIdController = async (req, res, next) => {
+	try {
+		const { id } = req.query;
+
+		if (!id) {
+			return next();
 		}
 		const data = await City.findAll({
 			where: {
 				id: id,
+			},
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
+
+/**
+ * Return cities by active
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns status and data (list)
+ */
+
+export const searchCitiesByActiveController = async (req, res, next) => {
+	try {
+		const { active } = req.query;
+
+		if (!active) {
+			return next();
+		}
+		const data = await City.findAll({
+			where: {
+				active: active,
 			},
 		});
 		if (data.length === 0) return res.status(404).json(data);
