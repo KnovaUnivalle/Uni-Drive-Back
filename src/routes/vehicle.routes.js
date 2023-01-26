@@ -9,7 +9,7 @@ import { updateActiveVehicleController } from '../controllers/vehicle/update.con
 
 const vehicleRouter = Router();
 
-attributeRouter.use(authenticationController, authorizationAdminController);
+vehicleRouter.use(authenticationController, authorizationAdminController);
 
 vehicleRouter.get('/', getVehiclesController);
 

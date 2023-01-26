@@ -20,10 +20,10 @@ import { getActiveTypesController } from '../controllers/attribute/type.controll
 const utilsRouter = Router();
 
 utilsRouter.post('/login/admin', loginDTO, adminLoginController);
-bidderRouter.post('/login/bidder', loginDTO, bidderLoginController);
-riderRouter.post('/login/rider', loginDTO, riderLoginController);
+utilsRouter.post('/login/bidder', loginDTO, bidderLoginController);
+utilsRouter.post('/login/rider', loginDTO, riderLoginController);
 
-bidderRouter.post(
+utilsRouter.post(
 	'/create/bidder',
 	bidderCreateDTO,
 	bidderExistController,
@@ -31,17 +31,17 @@ bidderRouter.post(
 	bidderCreateController,
 	vehicleCreateController
 );
-riderRouter.post(
+utilsRouter.post(
 	'/create/rider',
 	riderCreateDTO,
 	riderExistController,
 	riderCreateController
 );
 
-attributeRouter.get('/city', getActiveCitiesController);
-attributeRouter.get('/color', getActiveColorsController);
-attributeRouter.get('/brand', getActiveBrandsController);
-attributeRouter.get('/year', getActiveYearsController);
-attributeRouter.get('/type', getActiveTypesController);
+utilsRouter.get('/city', getActiveCitiesController);
+utilsRouter.get('/color', getActiveColorsController);
+utilsRouter.get('/brand', getActiveBrandsController);
+utilsRouter.get('/year', getActiveYearsController);
+utilsRouter.get('/type', getActiveTypesController);
 
 export default utilsRouter;
