@@ -1,4 +1,5 @@
 import sequelize from '../../config/db.js';
+import Trip from '../../schemas/trip.schema.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
 import { formatActiveReport } from '../../utils/arrayMethods.js';
 
@@ -12,9 +13,12 @@ const limit = 5;
  */
 export const frequentVehicleController = async (req, res) => {
 	try {
-		const data = await Vehicle.findAll({
-			attributes: ['id', [sequelize.fn('COUNT', sequelize.col('id')), 'count']],
-			group: ['id'],
+		const data = await Trip.findAll({
+			attributes: [
+				'VehicleId',
+				[sequelize.fn('COUNT', sequelize.col('VehicleId')), 'count'],
+			],
+			group: ['VehicleId'],
 			limit: limit,
 			order: [['count', 'DESC']],
 		});

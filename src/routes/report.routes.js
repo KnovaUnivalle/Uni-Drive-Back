@@ -17,6 +17,7 @@ import {
 	activeRiderController,
 	birthBidderDayController,
 	birthRiderDayController,
+	frequentRiderController,
 } from '../controllers/report/user.controller.js';
 import {
 	activeVehicleController,
@@ -43,11 +44,11 @@ reportRouter.get('/birthDay/bidder', birthBidderDayController);
 
 reportRouter.get('/birthDay/rider', birthRiderDayController);
 
-reportRouter.get('/attribute/brand', frequentBrandController);
-reportRouter.get('/attribute/color', frequentColorController);
-reportRouter.get('/attribute/type', frequentTypeController);
-reportRouter.get('/attribute/year', frequentYearController);
-
-reportRouter.get('/amount/vehicle', frequentVehicleController);
+reportRouter.get('/frequent/brand', frequentBrandController);
+reportRouter.get('/frequent/color', frequentColorController);
+reportRouter.get('/frequent/type', frequentTypeController);
+reportRouter.get('/frequent/year', frequentYearController);
+reportRouter.get('/frequent/vehicle', frequentVehicleController);
+reportRouter.get('/frequent', frequentRiderController);
 
 export default reportRouter;
