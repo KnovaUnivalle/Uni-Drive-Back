@@ -3,7 +3,10 @@ import Bidder from '../../schemas/bidder.schema.js';
 import Rider from '../../schemas/rider.schema.js';
 import RiderInTrip from '../../schemas/riderInTrip.schema.js';
 import Trip from '../../schemas/trip.schema.js';
-import { formatActiveReport } from '../../utils/arrayMethods.js';
+import {
+	formatActiveReport,
+	formatFrequentIDReport,
+} from '../../utils/arrayMethods.js';
 
 const limit = 5;
 
@@ -71,8 +74,9 @@ export const frequentBidderController = async (req, res) => {
 			order: [['count', 'DESC']],
 			include: [{ model: Bidder, attributes: ['id'] }],
 		});
+		console.log(bidders[0]['dataValues']['Bidder']['id']);
 		if (bidders.length === 0) return res.status(404).json([]);
-		const data = formatFrequentReport(bidders, 'Bidder', 'id');
+		const data = formatFrequentIDReport(bidders, 'BidderId');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -98,7 +102,7 @@ export const frequentRiderController = async (req, res) => {
 			include: [{ model: Rider, attributes: ['id'] }],
 		});
 		if (riders.length === 0) return res.status(404).json([]);
-		const data = formatFrequentReport(riders, 'Rider', 'id');
+		const data = formatFrequentReport(riders, 'BidderId');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
