@@ -3,10 +3,10 @@
  * @param {Array} arr
  * @returns array
  */
-export const arrayObjectsToArrayIds = arr =>
-	arr.reduce((prev, cur) => {
-		cur.id ? prev.push(cur.id) : null;
-		return prev;
+export const arrayObjectsToArrayIds = lst =>
+	lst.reduce((arr, cur) => {
+		cur.id ? arr.push(cur.id) : null;
+		return arr;
 	}, []);
 
 export const formatActiveReport = (active, noActive) => [
@@ -18,3 +18,10 @@ export const formatToUniversityReport = (toUniversity, noToUniversity) => [
 	{ x: 1, y: toUniversity, label: 'Universidad' },
 	{ x: toUniversity, y: noToUniversity, label: 'Otro destino' },
 ];
+
+export const formatFrequentReport = (lst, schema, prop, count = 'count') =>
+	lst.reduce((arr, cur) => {
+		const data = { name: cur[schema][prop], count: cur['dataValues'][count] };
+		arr.push(data);
+		return arr;
+	}, []);

@@ -61,7 +61,7 @@ export const birthRiderDayController = async (req, res) => {
  */
 export const frequentBidderController = async (req, res) => {
 	try {
-		const data = await Trip.findAll({
+		const bidders = await Trip.findAll({
 			attributes: [
 				'BidderId',
 				[sequelize.fn('COUNT', sequelize.col('BidderId')), 'count'],
@@ -71,7 +71,8 @@ export const frequentBidderController = async (req, res) => {
 			order: [['count', 'DESC']],
 			include: [{ model: Bidder, attributes: ['id'] }],
 		});
-		if (data.length === 0) return res.status(404).json(data);
+		if (bidders.length === 0) return res.status(404).json([]);
+		const data = formatFrequentReport(bidders, 'Bidder', 'id');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -86,7 +87,7 @@ export const frequentBidderController = async (req, res) => {
  */
 export const frequentRiderController = async (req, res) => {
 	try {
-		const data = await RiderInTrip.findAll({
+		const riders = await RiderInTrip.findAll({
 			attributes: [
 				'RiderId',
 				[sequelize.fn('COUNT', sequelize.col('RiderId')), 'count'],
@@ -96,7 +97,8 @@ export const frequentRiderController = async (req, res) => {
 			order: [['count', 'DESC']],
 			include: [{ model: Rider, attributes: ['id'] }],
 		});
-		if (data.length === 0) return res.status(404).json(data);
+		if (riders.length === 0) return res.status(404).json([]);
+		const data = formatFrequentReport(riders, 'Rider', 'id');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);

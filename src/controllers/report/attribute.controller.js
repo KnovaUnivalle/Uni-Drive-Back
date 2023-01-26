@@ -5,7 +5,10 @@ import ColorVehicle from '../../schemas/colorVehicle.schema.js';
 import TypeVehicle from '../../schemas/typeVehicle.schema.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
 import YearVehicle from '../../schemas/yearVehicle.schema.js';
-import { formatActiveReport } from '../../utils/arrayMethods.js';
+import {
+	formatActiveReport,
+	formatFrequentReport,
+} from '../../utils/arrayMethods.js';
 
 const limit = 5;
 
@@ -122,7 +125,7 @@ export const activeYearController = async (req, res) => {
  */
 export const frequentBrandController = async (req, res) => {
 	try {
-		const data = await Vehicle.findAll({
+		const brands = await Vehicle.findAll({
 			attributes: [
 				'BrandVehicleId',
 				[sequelize.fn('COUNT', sequelize.col('BrandVehicleId')), 'count'],
@@ -132,7 +135,8 @@ export const frequentBrandController = async (req, res) => {
 			order: [['count', 'DESC']],
 			include: [{ model: BrandVehicle, attributes: ['description'] }],
 		});
-		if (data.length === 0) return res.status(404).json(data);
+		if (brands.length === 0) return res.status(404).json([]);
+		const data = formatFrequentReport(brands, 'BrandVehicle', 'description');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -153,7 +157,7 @@ export const frequentCityController = async (req, res) => {};
  */
 export const frequentColorController = async (req, res) => {
 	try {
-		const data = await Vehicle.findAll({
+		const colors = await Vehicle.findAll({
 			attributes: [
 				'ColorVehicleId',
 				[sequelize.fn('COUNT', sequelize.col('ColorVehicleId')), 'count'],
@@ -163,7 +167,8 @@ export const frequentColorController = async (req, res) => {
 			order: [['count', 'DESC']],
 			include: [{ model: ColorVehicle, attributes: ['description'] }],
 		});
-		if (data.length === 0) return res.status(404).json(data);
+		if (colors.length === 0) return res.status(404).json([]);
+		const data = formatFrequentReport(colors, 'ColorVehicle', 'description');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -178,7 +183,7 @@ export const frequentColorController = async (req, res) => {
  */
 export const frequentTypeController = async (req, res) => {
 	try {
-		const data = await Vehicle.findAll({
+		const types = await Vehicle.findAll({
 			attributes: [
 				'TypeVehicleId',
 				[sequelize.fn('COUNT', sequelize.col('TypeVehicleId')), 'count'],
@@ -188,7 +193,8 @@ export const frequentTypeController = async (req, res) => {
 			order: [['count', 'DESC']],
 			include: [{ model: TypeVehicle, attributes: ['description'] }],
 		});
-		if (data.length === 0) return res.status(404).json(data);
+		if (types.length === 0) return res.status(404).json([]);
+		const data = formatFrequentReport(types, 'TypeVehicle', 'description');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -203,7 +209,7 @@ export const frequentTypeController = async (req, res) => {
  */
 export const frequentYearController = async (req, res) => {
 	try {
-		const data = await Vehicle.findAll({
+		const years = await Vehicle.findAll({
 			attributes: [
 				'YearVehicleId',
 				[sequelize.fn('COUNT', sequelize.col('YearVehicleId')), 'count'],
@@ -213,7 +219,8 @@ export const frequentYearController = async (req, res) => {
 			order: [['count', 'DESC']],
 			include: [{ model: YearVehicle, attributes: ['description'] }],
 		});
-		if (data.length === 0) return res.status(404).json(data);
+		if (years.length === 0) return res.status(404).json([]);
+		const data = formatFrequentReport(years, 'YearVehicle', 'description');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
