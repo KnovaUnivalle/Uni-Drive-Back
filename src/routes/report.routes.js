@@ -12,6 +12,7 @@ import {
 	frequentTypeController,
 	frequentYearController,
 } from '../controllers/report/attribute.controller.js';
+import { toUniversityController } from '../controllers/report/trip.controller.js';
 import {
 	activeBidderController,
 	activeRiderController,
@@ -48,5 +49,7 @@ reportRouter.get('/frequent/year', frequentYearController);
 reportRouter.get('/frequent/vehicle', frequentVehicleController);
 reportRouter.get('/frequent/rider', frequentRiderController);
 reportRouter.get('/frequent/bidder', frequentBidderController);
+
+reportRouter.get('/toUniversity', toUniversityController);
 
 export default reportRouter;

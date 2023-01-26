@@ -13,3 +13,8 @@ export const formatActiveReport = (active, noActive) => [
 	{ x: 1, y: active, label: 'Activo' },
 	{ x: active, y: noActive, label: 'No Activo' },
 ];
+
+export const formatToUniversityReport = (toUniversity, noToUniversity) => [
+	{ x: 1, y: toUniversity, label: 'Universidad' },
+	{ x: toUniversity, y: noToUniversity, label: 'Otro destino' },
+];
