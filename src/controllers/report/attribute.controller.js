@@ -6,6 +6,7 @@ import TypeVehicle from '../../schemas/typeVehicle.schema.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
 import YearVehicle from '../../schemas/yearVehicle.schema.js';
 
+const limit = 5;
 /**
  *send number of active and inactive brand from BrandVehicle
  * @param {Object} req
@@ -20,7 +21,7 @@ export const activeBrandController = async (req, res) => {
 		const active = await BrandVehicle.count({ where: { active: true } });
 		const noActive = total - active;
 
-		const data = { active, noActive };
+		const data = formatActiveReport(active, noActive);
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -41,7 +42,7 @@ export const activeCityController = async (req, res) => {
 		const active = await City.count({ where: { active: true } });
 		const noActive = total - active;
 
-		const data = { active, noActive };
+		const data = formatActiveReport(active, noActive);
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -62,7 +63,7 @@ export const activeColorController = async (req, res) => {
 		const active = await ColorVehicle.count({ where: { active: true } });
 		const noActive = total - active;
 
-		const data = { active, noActive };
+		const data = formatActiveReport(active, noActive);
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -83,7 +84,7 @@ export const activeTypeController = async (req, res) => {
 		const active = await TypeVehicle.count({ where: { active: true } });
 		const noActive = total - active;
 
-		const data = { active, noActive };
+		const data = formatActiveReport(active, noActive);
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -104,7 +105,7 @@ export const activeYearController = async (req, res) => {
 		const active = await YearVehicle.count({ where: { active: true } });
 		const noActive = total - active;
 
-		const data = { active, noActive };
+		const data = formatActiveReport(active, noActive);
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -125,7 +126,7 @@ export const frequentBrandController = async (req, res) => {
 				[sequelize.fn('COUNT', sequelize.col('BrandVehicleId')), 'count'],
 			],
 			group: ['BrandVehicleId', 'BrandVehicle.id'],
-			limit: 10,
+			limit: limit,
 			order: [['count', 'DESC']],
 			include: [{ model: BrandVehicle, attributes: ['description'] }],
 		});
@@ -156,7 +157,7 @@ export const frequentColorController = async (req, res) => {
 				[sequelize.fn('COUNT', sequelize.col('ColorVehicleId')), 'count'],
 			],
 			group: ['ColorVehicleId', 'ColorVehicle.id'],
-			limit: 10,
+			limit: limit,
 			order: [['count', 'DESC']],
 			include: [{ model: ColorVehicle, attributes: ['description'] }],
 		});
@@ -181,7 +182,7 @@ export const frequentTypeController = async (req, res) => {
 				[sequelize.fn('COUNT', sequelize.col('TypeVehicleId')), 'count'],
 			],
 			group: ['TypeVehicleId', 'TypeVehicle.id'],
-			limit: 10,
+			limit: limit,
 			order: [['count', 'DESC']],
 			include: [{ model: TypeVehicle, attributes: ['description'] }],
 		});
@@ -206,7 +207,7 @@ export const frequentYearController = async (req, res) => {
 				[sequelize.fn('COUNT', sequelize.col('YearVehicleId')), 'count'],
 			],
 			group: ['YearVehicleId', 'YearVehicle.id'],
-			limit: 10,
+			limit: limit,
 			order: [['count', 'DESC']],
 			include: [{ model: YearVehicle, attributes: ['description'] }],
 		});
