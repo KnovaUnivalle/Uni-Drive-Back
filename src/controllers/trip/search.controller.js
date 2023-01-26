@@ -1,5 +1,7 @@
 import { Op } from 'sequelize';
+import Bidder from '../../schemas/bidder.schema.js';
 import Trip from '../../schemas/trip.schema.js';
+import Vehicle from '../../schemas/vehicle.schema.js';
 
 export const searchTripRiderController = async (req, res) => {
 	try {
@@ -25,6 +27,10 @@ export const searchTripRiderController = async (req, res) => {
 				day: queryDay,
 				date: { [Op.gte]: queryDate },
 			},
+			include: [
+				{ model: Bidder, attributes: ['firstName', 'lastName'] },
+				{ model: Vehicle, attributes: ['plate', 'TypeVehicleId'] },
+			],
 		});
 		if (data.length === 0)
 			return res.status(404).send({ errors: ['Búsqueda inválida'] });

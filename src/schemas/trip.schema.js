@@ -1,5 +1,6 @@
 import DataTypes from 'sequelize';
 import sequelize from '../config/db.js';
+import Bidder from './bidder.schema.js';
 import Vehicle from './vehicle.schema.js';
 
 const Trip = sequelize.define(
@@ -47,5 +48,7 @@ const Trip = sequelize.define(
 
 Vehicle.hasOne(Trip);
 Trip.belongsTo(Vehicle);
+Bidder.hasOne(Trip);
+Trip.belongsTo(Bidder);
 
 export default Trip;
