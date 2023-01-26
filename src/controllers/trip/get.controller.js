@@ -9,7 +9,7 @@ import { arrayObjectsToArrayIds } from '../../utils/arrayMethods.js';
  * @param {Object} res
  * @returns status and data
  */
-export const getTrips = async (req, res) => {
+export const getTripsController = async (req, res) => {
 	const { id } = req;
 	const { active } = req.query;
 

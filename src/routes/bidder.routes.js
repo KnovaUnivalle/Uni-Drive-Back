@@ -1,45 +1,20 @@
 import { Router } from 'express';
-import bidderLoginController from '../controllers/bidder/login.controller.js';
-import bidderCreateController from '../controllers/bidder/create.controller.js';
-import bidderCreateDTO from '../dto/bidder/create.dto.js';
-import loginDTO from '../dto/login.dto.js';
 import authenticationController from '../controllers/authentication.controller.js';
 import authorizationBidderController from '../controllers/bidder/authorization.controller.js';
 import { getActivesVehiclesBidderController } from '../controllers/vehicle/get.controller.js';
-import bidderExistController from '../controllers/bidder/exist.controller.js';
-import vehicleExistController from '../controllers/vehicle/exist.controller.js';
-import vehicleCreateController from '../controllers/vehicle/create.controller.js';
-import { getTrips } from '../controllers/trip/get.controller.js';
-import { disableTrip } from '../controllers/trip/disable.controller.js';
+import { getTripsController } from '../controllers/trip/get.controller.js';
+import { disableTripController } from '../controllers/trip/disable.controller.js';
+import createTripController from '../controllers/trip/create.controller.js';
+import tripCreateDTO from '../dto/trip/create.dto.js';
 
 const bidderRouter = Router();
 
-bidderRouter.post('/login', loginDTO, bidderLoginController);
-bidderRouter.post(
-	'/create',
-	bidderCreateDTO,
-	bidderExistController,
-	vehicleExistController,
-	bidderCreateController,
-	vehicleCreateController
-);
-bidderRouter.get(
-	'/vehicles',
-	authenticationController,
-	authorizationBidderController,
-	getActivesVehiclesBidderController
-);
-bidderRouter.get(
-	'/trips',
-	authenticationController,
-	authorizationBidderController,
-	getTrips
-);
-bidderRouter.put(
-	'/trips/:id',
-	authenticationController,
-	authorizationBidderController,
-	disableTrip
-);
+bidderRouter.use(authenticationController, authorizationBidderController);
+
+bidderRouter.get('/vehicles', getActivesVehiclesBidderController);
+
+bidderRouter.get('/trips', getTripsController);
+bidderRouter.put('/trips/:id', disableTripController);
+bidderRouter.post('/trips/create', tripCreateDTO, createTripController);
 
 export default bidderRouter;

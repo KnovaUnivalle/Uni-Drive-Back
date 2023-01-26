@@ -9,25 +9,12 @@ import { updateActiveVehicleController } from '../controllers/vehicle/update.con
 
 const vehicleRouter = Router();
 
-vehicleRouter.get(
-	'/',
-	authenticationController,
-	authorizationAdminController,
-	getVehiclesController
-);
+attributeRouter.use(authenticationController, authorizationAdminController);
 
-vehicleRouter.get(
-	'/:id',
-	authenticationController,
-	authorizationAdminController,
-	getVehicleController
-);
+vehicleRouter.get('/', getVehiclesController);
 
-vehicleRouter.put(
-	'/active/:id',
-	authenticationController,
-	authorizationAdminController,
-	updateActiveVehicleController
-);
+vehicleRouter.get('/:id', getVehicleController);
+
+vehicleRouter.put('/active/:id', updateActiveVehicleController);
 
 export default vehicleRouter;

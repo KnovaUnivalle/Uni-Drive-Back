@@ -7,7 +7,7 @@ import City from '../../schemas/city.schema.js';
  * @param {Object} res
  * @returns status and message/data
  */
-export const getActiveCities = async (req, res) => {
+export const getActiveCitiesController = async (req, res) => {
 	try {
 		const data = await City.findAll({
 			where: { active: true },
