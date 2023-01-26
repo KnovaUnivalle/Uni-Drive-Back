@@ -5,6 +5,7 @@ import { getActivesVehiclesBidderController } from '../controllers/vehicle/get.c
 import { getTripsController } from '../controllers/trip/get.controller.js';
 import { disableTripController } from '../controllers/trip/disable.controller.js';
 import { createTripController } from '../controllers/trip/create.controller.js';
+import { getRidersInTrips } from '../controllers/trip/getRider.controller.js';
 import tripCreateDTO from '../dto/trip/create.dto.js';
 
 const bidderRouter = Router();
@@ -16,5 +17,6 @@ bidderRouter.get('/vehicles', getActivesVehiclesBidderController);
 bidderRouter.get('/trips', getTripsController);
 bidderRouter.put('/trips/:id', disableTripController);
 bidderRouter.post('/trips/create', tripCreateDTO, createTripController);
+bidderRouter.get('/rider/:trips', getRidersInTrips);
 
 export default bidderRouter;
