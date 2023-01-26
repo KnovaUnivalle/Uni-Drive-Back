@@ -1,7 +1,10 @@
 import sequelize from '../../config/db.js';
 import Trip from '../../schemas/trip.schema.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
-import { formatActiveReport } from '../../utils/arrayMethods.js';
+import {
+	formatActiveReport,
+	formatFrequentIDReport,
+} from '../../utils/arrayMethods.js';
 
 const limit = 5;
 
@@ -13,7 +16,7 @@ const limit = 5;
  */
 export const frequentVehicleController = async (req, res) => {
 	try {
-		const data = await Trip.findAll({
+		const vehicles = await Trip.findAll({
 			attributes: [
 				'VehicleId',
 				[sequelize.fn('COUNT', sequelize.col('VehicleId')), 'count'],
@@ -22,7 +25,8 @@ export const frequentVehicleController = async (req, res) => {
 			limit: limit,
 			order: [['count', 'DESC']],
 		});
-		if (data.length === 0) return res.status(404).json(data);
+		if (vehicles.length === 0) return res.status(404).json([]);
+		const data = formatFrequentIDReport(vehicles, 'VehicleId');
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
