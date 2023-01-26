@@ -1,3 +1,4 @@
+import RiderInTrip from '../../schemas/riderInTrip.schema.js';
 import Trip from '../../schemas/trip.schema.js';
 
 /**
@@ -5,7 +6,7 @@ import Trip from '../../schemas/trip.schema.js';
  * @param {Object} req
  * @param {Object} res
  */
-const createTripController = async (req, res) => {
+export const createTripController = async (req, res) => {
 	const { id } = req;
 	const { vehicle, date, day, rate, description, toUniversity, meetPoint } =
 		req.body;
@@ -25,3 +26,17 @@ const createTripController = async (req, res) => {
 };
 
 export default createTripController;
+
+export const createRiderInTripController = async (req, res) => {
+	const { id } = req;
+	const { trip } = req.body;
+	req.body;
+	// /create trip and send status
+	const riderInTrip = await RiderInTrip.create({
+		TripId: trip,
+		RiderId: id,
+		status: 1,
+	});
+
+	return res.status(201).send('Viaje registrado con éxito');
+};

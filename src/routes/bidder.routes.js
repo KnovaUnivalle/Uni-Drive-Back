@@ -4,7 +4,7 @@ import authorizationBidderController from '../controllers/bidder/authorization.c
 import { getActivesVehiclesBidderController } from '../controllers/vehicle/get.controller.js';
 import { getTripsController } from '../controllers/trip/get.controller.js';
 import { disableTripController } from '../controllers/trip/disable.controller.js';
-import createTripController from '../controllers/trip/create.controller.js';
+import { createTripController } from '../controllers/trip/create.controller.js';
 import tripCreateDTO from '../dto/trip/create.dto.js';
 
 const bidderRouter = Router();
