@@ -30,7 +30,7 @@ export default createTripController;
 export const createRiderInTripController = async (req, res) => {
 	const { id } = req;
 	const { trip } = req.body;
-	req.body;
+
 	// /create trip and send status
 	const riderInTrip = await RiderInTrip.create({
 		TripId: trip,

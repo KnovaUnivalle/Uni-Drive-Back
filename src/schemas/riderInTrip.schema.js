@@ -15,10 +15,6 @@ const RiderInTrip = sequelize.define(
 			type: DataTypes.SMALLINT,
 			allowNull: false,
 		},
-		point: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
 	},
 	{
 		timestamps: false, // no update at, no create at
