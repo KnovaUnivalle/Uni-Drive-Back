@@ -21,7 +21,20 @@ export const formatToUniversityReport = (toUniversity, noToUniversity) => [
 
 export const formatFrequentReport = (lst, schema, prop, count = 'count') =>
 	lst.reduce((arr, cur) => {
-		const data = { name: cur[schema][prop], count: cur['dataValues'][count] };
+		const data = {
+			name: cur[schema][prop],
+			count: Number(cur['dataValues'][count]),
+		};
+		arr.push(data);
+		return arr;
+	}, []);
+
+export const formatFrequentIDReport = (lst, prop, count = 'count') =>
+	lst.reduce((arr, cur) => {
+		const data = {
+			name: String(cur[prop]),
+			count: Number(cur['dataValues'][count]),
+		};
 		arr.push(data);
 		return arr;
 	}, []);
