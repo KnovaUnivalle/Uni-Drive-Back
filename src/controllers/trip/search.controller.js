@@ -28,7 +28,7 @@ export const searchTripRiderController = async (req, res) => {
 				date: { [Op.gte]: queryDate },
 			},
 			include: [
-				{ model: Bidder, attributes: ['firstName', 'lastName'] },
+				{ model: Bidder, attributes: ['firstName', 'lastName', 'numberPhone'] },
 				{ model: Vehicle, attributes: ['plate', 'TypeVehicleId'] },
 			],
 		});
