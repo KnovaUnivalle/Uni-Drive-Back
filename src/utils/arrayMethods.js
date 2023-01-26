@@ -11,5 +11,5 @@ export const arrayObjectsToArrayIds = arr =>
 
 export const formatActiveReport = (active, noActive) => [
 	{ x: 1, y: active, label: 'Activo' },
-	{ x: active, y: noActive, label: 'Activo' },
+	{ x: active, y: noActive, label: 'No Activo' },
 ];
