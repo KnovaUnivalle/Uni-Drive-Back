@@ -15,6 +15,13 @@ export const searchTripRiderController = async (req, res) => {
 		if (queryToUniversity === 0) {
 			const data = await Trip.findAll({
 				where: { day: queryDay, date: { [Op.gte]: queryDate } },
+				include: [
+					{
+						model: Bidder,
+						attributes: ['firstName', 'lastName', 'numberPhone'],
+					},
+					{ model: Vehicle, attributes: ['plate', 'TypeVehicleId'] },
+				],
 			});
 			if (data.length === 0)
 				return res.status(404).send({ errors: ['Búsqueda inválida'] });
