@@ -2,6 +2,8 @@ import sequelize from '../../config/db.js';
 import Bidder from '../../schemas/bidder.schema.js';
 import Rider from '../../schemas/rider.schema.js';
 import RiderInTrip from '../../schemas/riderInTrip.schema.js';
+import Trip from '../../schemas/trip.schema.js';
+import Vehicle from '../../schemas/vehicle.schema.js';
 import { formatActiveReport } from '../../utils/arrayMethods.js';
 
 const limit = 5;
@@ -58,7 +60,24 @@ export const birthRiderDayController = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-const frequentBidderController = async (req, res) => {};
+export const frequentBidderController = async (req, res) => {
+	try {
+		const data = await Trip.findAll({
+			attributes: [
+				'VehicleId',
+				[sequelize.fn('COUNT', sequelize.col('VehicleId')), 'count'],
+			],
+			group: ['VehicleId', 'Vehicle.id'],
+			limit: limit,
+			order: [['count', 'DESC']],
+			include: [{ model: Vehicle, attributes: ['BidderId'] }],
+		});
+		if (data.length === 0) return res.status(404).json(data);
+		return res.status(200).json(data);
+	} catch (error) {
+		return res.status(500);
+	}
+};
 
 /**
  *send the most frequent riders on a trip
