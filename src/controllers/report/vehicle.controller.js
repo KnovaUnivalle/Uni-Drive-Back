@@ -1,5 +1,6 @@
 import sequelize from '../../config/db.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
+import { formatActiveReport } from '../../utils/arrayMethods.js';
 
 const limit = 5;
 

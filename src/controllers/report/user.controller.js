@@ -1,6 +1,9 @@
 import sequelize from '../../config/db.js';
 import Bidder from '../../schemas/bidder.schema.js';
 import Rider from '../../schemas/rider.schema.js';
+import { formatActiveReport } from '../../utils/arrayMethods.js';
+
+const limit = 5;
 
 /**
  * send the most frequent birthDays from bidder
@@ -16,7 +19,7 @@ export const birthBidderDayController = async (req, res) => {
 				[sequelize.fn('COUNT', sequelize.col('birthDate')), 'count'],
 			],
 			group: 'birthDate',
-			limit: 10,
+			limit: limit,
 			order: [['count', 'DESC']],
 		});
 		if (data.length === 0) return res.status(404).json(data);
@@ -39,7 +42,7 @@ export const birthRiderDayController = async (req, res) => {
 				[sequelize.fn('COUNT', sequelize.col('birthDate')), 'count'],
 			],
 			group: 'birthDate',
-			limit: 10,
+			limit: limit,
 			order: ['count', 'DESC'],
 		});
 		if (data.length === 0) return res.status(404).json(data);
@@ -67,7 +70,7 @@ export const activeBidderController = async (req, res) => {
 		const active = await Bidder.count({ where: { active: true } });
 		const noActive = total - active;
 
-		const data = { active, noActive };
+		const data = formatActiveReport(active, noActive);
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);
@@ -88,7 +91,7 @@ export const activeRiderController = async (req, res) => {
 		const active = await Rider.count({ where: { active: true } });
 		const noActive = total - active;
 
-		const data = { active, noActive };
+		const data = formatActiveReport(active, noActive);
 		return res.status(200).json(data);
 	} catch (error) {
 		return res.status(500);

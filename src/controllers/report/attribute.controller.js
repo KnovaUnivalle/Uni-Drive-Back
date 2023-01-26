@@ -5,8 +5,10 @@ import ColorVehicle from '../../schemas/colorVehicle.schema.js';
 import TypeVehicle from '../../schemas/typeVehicle.schema.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
 import YearVehicle from '../../schemas/yearVehicle.schema.js';
+import { formatActiveReport } from '../../utils/arrayMethods.js';
 
 const limit = 5;
+
 /**
  *send number of active and inactive brand from BrandVehicle
  * @param {Object} req
