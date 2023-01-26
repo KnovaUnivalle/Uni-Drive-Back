@@ -1,3 +1,4 @@
+import Bidder from '../../schemas/bidder.schema.js';
 import Trip from '../../schemas/trip.schema.js';
 import Vehicle from '../../schemas/vehicle.schema.js';
 import { arrayObjectsToArrayIds } from '../../utils/arrayMethods.js';
@@ -33,6 +34,7 @@ export const getTrips = async (req, res) => {
 			'meetPoint',
 			'active',
 		],
+		include: [{ model: Vehicle, attributes: ['plate', 'TypeVehicleId'] }],
 	});
 
 	return res.status(200).json(data);
