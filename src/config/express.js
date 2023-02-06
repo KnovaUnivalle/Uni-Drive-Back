@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import Admin from '../schemas/admin.schema.js';
@@ -9,13 +9,15 @@ import tripRouter from '../routes/trip.routes.js';
 import attributeRouter from '../routes/attribute.routes.js';
 import reportRouter from '../routes/report.routes.js';
 import utilsRouter from '../routes/utils.routes.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
 //middlewares
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors({ credentials: true }));
+app.use(cookieParser());
 
 //routes
 app.get('/', (req, res) => {

@@ -9,15 +9,10 @@ import { jwtVerify } from 'jose';
  */
 const authenticationController = async (req, res, next) => {
 	try {
-		const { authorization } = req.headers;
-
-		if (!authorization)
-			return res.status(401).send({ errors: ['Usuario no autorizado'] });
-
-		const jwt = authorization.split(' ')[0];
-
+		const jwt = req.cookies.access_token;
 		if (!jwt)
 			return res.status(401).send({ errors: ['Usuario no autorizado'] });
+
 		const encoder = new TextEncoder();
 		const { payload } = await jwtVerify(
 			authorization,

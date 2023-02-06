@@ -43,7 +43,13 @@ const adminLoginController = async (req, res) => {
 		.setExpirationTime('7d')
 		.sign(encoder.encode(process.env.JWT_PRIVATE_KEY));
 
-	return res.send({ jwt });
+	return res
+		.cookie('access_token', jwt, {
+			httpOnly: true,
+			secure: true,
+		})
+		.status(200)
+		.send({ message: 'Login Completo' });
 };
 
 export default adminLoginController;
